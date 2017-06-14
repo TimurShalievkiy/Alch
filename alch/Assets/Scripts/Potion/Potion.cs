@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class Potion : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    int id;
+    string namePotion;
+    int price;
+
+    public Potion(int id, string namePotion, int price)
+    {
+        this.id = id;
+        this.namePotion = namePotion;
+        this.price = price;
+    }
+
+    public int Id{get{return id;}
+    }
 }

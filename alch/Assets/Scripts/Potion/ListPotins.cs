@@ -4,13 +4,20 @@ using UnityEngine;
 
 public class ListPotins : MonoBehaviour {
 
+    List<Potion> potions;
 	// Use this for initialization
 	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+        potions = new List<Potion>() {
+            new Potion(0,"tea",5),
+            new Potion(1,"helth",10),
+            new Potion(2, "poison",15)
+        };
+    
+    }
+    public Potion GetIngredietnById(int x)
+    {
+        return potions.Find(i => i.Id == x);
+    }
+
+
 }

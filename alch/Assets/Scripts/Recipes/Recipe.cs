@@ -3,14 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Recipe : MonoBehaviour {
+    int id;
+    int[] MassIngr;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public Recipe(int id, int[] MassIngr)
+    {
+        this.id = id;
+        this.MassIngr = MassIngr;
+    }
 }
