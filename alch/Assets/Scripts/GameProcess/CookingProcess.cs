@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CookingProcess : MonoBehaviour {
     public GameObject gridSequence;
@@ -20,10 +21,10 @@ public class CookingProcess : MonoBehaviour {
         
         for (int i = 0; i < 4; i++)
         {
-            GameObject a = ConteinerIngr;
-            GameObject.Instantiate(a);//.SetParent(gridSequence.transform);
+            //image a = ConteinerIngr;
+            var a = Instantiate(ConteinerIngr, gridSequence.transform.position, Quaternion.identity);
             a.transform.SetParent(gridSequence.transform);
-
+            a.transform.localScale =new Vector3(1, 1, 1);
         }
     }
 }
