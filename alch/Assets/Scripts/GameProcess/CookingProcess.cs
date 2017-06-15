@@ -4,11 +4,14 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class CookingProcess : MonoBehaviour {
+    public Camera camera;
+
     public GameObject gridSequence;
     public GameObject ConteinerIngr;
-	// Use this for initialization
-	void Start () {
-        LoadIngrInSequence();
+    public static Recipe recipe;
+    // Use this for initialization
+    void Start () {
+       // LoadIngrInSequence();
 
     }
 	
@@ -16,15 +19,36 @@ public class CookingProcess : MonoBehaviour {
 	void Update () {
 		
 	}
-    void LoadIngrInSequence()
+    
+
+    public void LoadIngrInSequence()
     {
-        
-        for (int i = 0; i < 4; i++)
+
+        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+
+        if (hit.collider != null)
         {
-            //image a = ConteinerIngr;
-            var a = Instantiate(ConteinerIngr, gridSequence.transform.position, Quaternion.identity);
-            a.transform.SetParent(gridSequence.transform);
-            a.transform.localScale =new Vector3(1, 1, 1);
+           int id = System.Convert.ToInt32( hit.collider.gameObject.transform.name);
+
+            foreach (Recipe r in ListRecipes.recipes)
+            {
+                if (r.Id == id)
+                {
+                    recipe = new Recipe(r.Id,r.MassIngr);
+                };
+            }
         }
+        for (int i = 0; i < gridSequence.transform.childCount; i++)
+            Destroy(gridSequence.transform.GetChild(i).gameObject);
+
+            for (int i = 0; i < recipe.MassSize; i++)
+            {
+                var a = Instantiate(ConteinerIngr, gridSequence.transform.position, Quaternion.identity);
+                a.transform.SetParent(gridSequence.transform);
+                a.transform.localScale = new Vector3(1, 1, 1);
+            }
+            Debug.Log("id recipe = " + recipe.Id);
+        
     }
+
 }

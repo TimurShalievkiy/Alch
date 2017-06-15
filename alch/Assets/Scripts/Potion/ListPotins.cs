@@ -12,7 +12,9 @@ public class ListPotins : MonoBehaviour {
             new Potion(1,"helth",10),
             new Potion(2, "poison",15)
         };
-    
+
+       // Debug.Log("Potions done!");
+
     }
     public Potion GetIngredietnById(int x)
     {

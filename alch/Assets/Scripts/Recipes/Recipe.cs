@@ -4,11 +4,27 @@ using UnityEngine;
 
 public class Recipe : MonoBehaviour {
     int id;
-    int[] MassIngr;
+    int[] massIngr;
 
-    public Recipe(int id, int[] MassIngr)
+    public Recipe(int id, int[] massIngr)
     {
         this.id = id;
-        this.MassIngr = MassIngr;
+        this.massIngr = massIngr;
+    }
+
+    public int Id
+    {
+        get
+        {
+            return id;
+        }
+    }
+    public int MassSize
+    {
+        get { return massIngr.Length; }
+    }
+    public int[] MassIngr
+    {
+        get { return massIngr; }
     }
 }
