@@ -89,6 +89,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\GameProcess\CookingProcess.cs" />
     <Compile Include="Assets\Scripts\Ingredients\Ingredient.cs" />
     <Compile Include="Assets\Scripts\Ingredients\ListIngredient.cs" />
     <Compile Include="Assets\Scripts\Potion\ListPotins.cs" />
