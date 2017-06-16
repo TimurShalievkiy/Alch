@@ -6,12 +6,12 @@ public class ListIngredient : MonoBehaviour {
 
     int id;
 
-    List<Ingredient> ingredients;
+    public static List<Ingredient> ingredients;
 
 	// Use this for initialization
 	void Start () {
         ingredients = new List<Ingredient>() {
-            new Ingredient(0,"salt","salt",5,10,15),
+            new Ingredient(0,"salt","Images/Ingr/lavanda",5,10,15),
             new Ingredient(1, "lavanda", "lavanda",10,10,10),
             new Ingredient(2, "gold","gold",20,15,10),
             new Ingredient(3, "korn","korn",20,20,20),
@@ -24,6 +24,9 @@ public class ListIngredient : MonoBehaviour {
     {     
         return ingredients.Find(i => i.Id == x);
     }
-	
+    public static string GetSpritePassById(int x)
+    {
+        return  ingredients[x].SpritePass;
+    }
 
 }

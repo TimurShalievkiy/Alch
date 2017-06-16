@@ -24,4 +24,19 @@ public class Ingredient : MonoBehaviour {
     }
 
     public int Id{ get{return id;} }
+
+    public string SpritePass
+    {
+        get
+        {
+            return spritePass;
+        }
+
+    }
+    public void GetRGBIngr(out int R, out int G, out int B)
+    {
+        R = this.R;
+        G = this.G;
+        B = this.B;
+    }
 }
