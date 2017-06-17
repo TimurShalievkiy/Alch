@@ -24,12 +24,14 @@ public class CookingProcess : MonoBehaviour
     int B;
 
     float timeByRefine = 30f;
+    public float rotateSpeed = 300f;
 
 
     void Start()
     {
         readyToAddIngr = true;
     }
+
 
     // Update is called once per frame
     void Update()
@@ -38,7 +40,7 @@ public class CookingProcess : MonoBehaviour
         {
             if (timeByRefine > 0)
             {
-                //rotateConteiner.transform.Rotate(Vector3.right * Time.deltaTime);
+                rotateConteiner.transform.Rotate(Vector3.forward * Time.deltaTime * rotateSpeed);
                 timeByRefine -= Time.deltaTime;
                 timerByStady.text = timeByRefine.ToString("0.0");
             }
@@ -53,9 +55,13 @@ public class CookingProcess : MonoBehaviour
 
     public void Cooking()
     {
-
+      
     }
 
+    void CHeckButton()
+    {
+
+    }
     //добавление ингредиента для обработки 
     public void AddIngredientToKattle()
     {
