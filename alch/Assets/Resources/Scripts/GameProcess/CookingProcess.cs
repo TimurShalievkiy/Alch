@@ -9,27 +9,45 @@ public class CookingProcess : MonoBehaviour
 
     public GameObject gridSequence;
     public GameObject ConteinerIngr;
+    public GameObject rotateConteiner;
     public static Recipe recipe;
     public int currentIngr;
+    public Text timerByStady;
 
 
     bool readyToAddIngr;
+    bool readyToStady;
 
 
     int R;
     int G;
     int B;
-    // Use this for initialization
+
+    float timeByRefine = 30f;
+
+
     void Start()
     {
         readyToAddIngr = true;
-
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if (readyToStady)
+        {
+            if (timeByRefine > 0)
+            {
+                //rotateConteiner.transform.Rotate(Vector3.right * Time.deltaTime);
+                timeByRefine -= Time.deltaTime;
+                timerByStady.text = timeByRefine.ToString("0.0");
+            }
+            else
+            {
+                readyToStady = false;
+                timerByStady.text = "";
+            }
+        }
     }
 
 
@@ -37,16 +55,16 @@ public class CookingProcess : MonoBehaviour
     {
 
     }
+
     //добавление ингредиента для обработки 
     public void AddIngredientToKattle()
     {
         if (readyToAddIngr)
         {
             ListIngredient.ingredients[currentIngr].GetRGBIngr(out R,out G,out B);
-            Debug.Log("R = " + R);
-            Debug.Log("G = " + G);
-            Debug.Log("B = " + B);
             readyToAddIngr = false;
+            readyToStady = true;
+            timeByRefine = 30f;
         }
     }
 
