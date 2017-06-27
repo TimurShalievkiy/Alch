@@ -136,6 +136,7 @@ public class CookingProcess : MonoBehaviour
     public void LoadIngrInSequence()
     {       
         //удаление дочерних єлементов из очереди.
+        if(gridSequence.transform.childCount > 0)
         for (int i = 0; i < gridSequence.transform.childCount; i++)
             Destroy(gridSequence.transform.GetChild(i).gameObject);
 

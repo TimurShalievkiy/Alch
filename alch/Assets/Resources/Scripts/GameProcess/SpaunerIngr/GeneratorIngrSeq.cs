@@ -27,13 +27,16 @@ public class GeneratorIngrSeq : MonoBehaviour
 
         GameObject g = Instantiate(conteiner, transform.position, Quaternion.identity);
 
-        Destroy(g, 20);
+        //Destroy(g, 20);
 
         iter = Random.Range(0, CookingProcess.recipe.MassIngr.Length);
 
         g.GetComponent<Image>().sprite = Resources.Load<Sprite>(ListIngredient.GetSpritePassById(CookingProcess.recipe.MassIngr[iter]));
         g.name = CookingProcess.recipe.MassIngr[iter].ToString();
         g.transform.SetParent(this.transform);
+
+        g.GetComponent<Rigidbody2D>().mass = 0;
+        g.GetComponent<Rigidbody2D>().gravityScale = 0;
 
 
 
