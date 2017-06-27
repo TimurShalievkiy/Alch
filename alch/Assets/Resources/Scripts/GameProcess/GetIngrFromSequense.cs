@@ -5,18 +5,17 @@ using UnityEngine.UI;
 
 public class GetIngrFromSequense : MonoBehaviour {
 
+    public GameObject g;
 
-    private void OnCollisionEnter2D(Collision2D coll)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        CookingProcess.currentIngr = System.Convert.ToInt32(coll.transform.name);
-        this.gameObject.GetComponent<Image>().color = new Color(255, 255, 0);
-    
+        if (collision.GetComponent<DragEndDrop>())
+        {
+            Destroy(collision.gameObject);
+            CookingProcess.currentIngr = System.Convert.ToInt32(collision.transform.name);
+            this.gameObject.GetComponent<Image>().color = new Color(255, 255, 0);
+            g.GetComponent<CookingProcess>().AddIngredientToKattle();
+        }
     }
-    private void OnCollisionExit2D(Collision2D coll)
-    {
-        CookingProcess.currentIngr = -1;
-        this.gameObject.GetComponent<Image>().color = new Color(255, 255, 255);
 
-
-    }
 }

@@ -12,7 +12,7 @@ public class CookingProcess : MonoBehaviour
     public GameObject nextIngrView;
 
     public GameObject ExitButton;
-    public GameObject AddIngrButton;
+
     public GameObject RecipesButton;
 
 
@@ -102,7 +102,6 @@ public class CookingProcess : MonoBehaviour
     {
         gridSequence.SetActive(false);
         ExitButton.SetActive(false);
-        AddIngrButton.SetActive(false);
         RecipesButton.SetActive(true);
         currentRecipeIngr = -1;
         currentIngr = -1;
