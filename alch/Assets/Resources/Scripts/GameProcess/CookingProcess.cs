@@ -16,14 +16,14 @@ public class CookingProcess : MonoBehaviour
     public GameObject RecipesButton;
 
 
-    public GameObject RImage;
-    public GameObject GImage;
-    public GameObject BImage;
+   // public GameObject RImage;
+   // public GameObject GImage;
+   // public GameObject BImage;
 
 
     public static Recipe recipe;
     public static int currentIngr;
-    public Text timerByStady;
+   // public Text timerByStady;
 
 
 
@@ -35,7 +35,7 @@ public class CookingProcess : MonoBehaviour
     public static int G;
     public static int B;
 
-    float timeByRefine = 30f;
+    //float timeByRefine = 30f;
 
     public static int currentRecipeIngr = -1;
 
@@ -61,22 +61,22 @@ public class CookingProcess : MonoBehaviour
         {
             
 
-            if (timeByRefine > 0)
-            {
+           // if (timeByRefine > 0)
+           // {
                 DirectionSircl();
-                timeByRefine -= Time.deltaTime;
-                timerByStady.text = timeByRefine.ToString("0.0");
+                //timeByRefine -= Time.deltaTime;
+               // timerByStady.text = timeByRefine.ToString("0.0");
 
-                RImage.transform.GetChild(0).transform.GetChild(0).GetComponent<Text>().text = R.ToString();
-                GImage.transform.GetChild(0).transform.GetChild(0).GetComponent<Text>().text = G.ToString();
-                BImage.transform.GetChild(0).transform.GetChild(0).GetComponent<Text>().text = B.ToString();
-            }
-            else
-            {
-                readyToStady = false;
-                readyToAddIngr = true;
-                timerByStady.text = "";
-            }
+              // RImage.transform.GetChild(0).transform.GetChild(0).GetComponent<Text>().text = R.ToString();
+               // GImage.transform.GetChild(0).transform.GetChild(0).GetComponent<Text>().text = G.ToString();
+              //  BImage.transform.GetChild(0).transform.GetChild(0).GetComponent<Text>().text = B.ToString();
+            //}
+            //else
+            //{
+            //    readyToStady = false;
+            //    readyToAddIngr = true;
+               // timerByStady.text = "";
+            //}
             if (R == 0 && G == 0 && B == 0)
             {
                 readyToStady = false;
@@ -125,7 +125,7 @@ public class CookingProcess : MonoBehaviour
             ListIngredient.ingredients[currentIngr].GetRGBIngr(out R, out G, out B);
             readyToAddIngr = false;
             readyToStady = true;
-            timeByRefine = 30f;
+            //timeByRefine = 30f;
             Debug.Log(ListIngredient.ingredients[currentIngr].Id);
         }
     }
