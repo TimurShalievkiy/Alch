@@ -5,11 +5,12 @@ using UnityEngine;
 public class Recipe : MonoBehaviour {
     int id;
     int[] massIngr;
-
-    public Recipe(int id, int[] massIngr)
+    int hard;
+    public Recipe(int id, int hard, int[] massIngr)
     {
         this.id = id;
         this.massIngr = massIngr;
+        this.hard = hard;
     }
 
     public int Id
@@ -26,5 +27,9 @@ public class Recipe : MonoBehaviour {
     public int[] MassIngr
     {
         get { return massIngr; }
+    }
+    public int Hard
+    {
+        get { return hard; }
     }
 }

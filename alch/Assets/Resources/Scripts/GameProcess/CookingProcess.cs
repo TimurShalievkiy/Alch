@@ -15,15 +15,18 @@ public class CookingProcess : MonoBehaviour
 
     public GameObject RecipesButton;
 
-
-   // public GameObject RImage;
-   // public GameObject GImage;
-   // public GameObject BImage;
+    public GameObject SliderR;
+    public GameObject SliderG;
+    public GameObject SliderB;
+    // public GameObject RImage;
+    // public GameObject GImage;
+    // public GameObject BImage;
 
 
     public static Recipe recipe;
     public static int currentIngr;
-   // public Text timerByStady;
+   //public Text timerByStady;
+   // public Text progressView;
 
 
 
@@ -35,9 +38,17 @@ public class CookingProcess : MonoBehaviour
     public static int G;
     public static int B;
 
+
+    public float progressIngr;
     //float timeByRefine = 30f;
 
     public static int currentRecipeIngr = -1;
+
+
+    public float currentChangeVall = 0.02f; //временная переменная для изменениея значения по клику 
+
+
+    public static int recipeHard = 0; // сложность рецепта влияет на количество слайдеров
 
     void Start()
     {
@@ -51,19 +62,51 @@ public class CookingProcess : MonoBehaviour
     void Update()
     {
         //Debug.Log(currentRecipeIngr + "   " + recipe.MassIngr[currentRecipeIngr]);
-        if (currentRecipeIngr != -1 && nextIngrView.transform.GetChild(0).name != recipe.MassIngr[currentRecipeIngr].ToString())
+        if (currentRecipeIngr != -1 && nextIngrView.transform.GetChild(1).name != recipe.MassIngr[currentRecipeIngr].ToString())
         {
-            nextIngrView.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(ListIngredient.GetSpritePassById(recipe.MassIngr[currentRecipeIngr]));
-            nextIngrView.transform.GetChild(0).name = recipe.MassIngr[currentRecipeIngr].ToString();
+            nextIngrView.transform.GetChild(1).GetComponent<Image>().sprite = Resources.Load<Sprite>(ListIngredient.GetSpritePassById(recipe.MassIngr[currentRecipeIngr]));
+            nextIngrView.transform.GetChild(1).name = recipe.MassIngr[currentRecipeIngr].ToString();
+            ResetAllSlider();
         }
       
         if (readyToStady)
         {
-            
+
+            if (ChekGreenZoneAllSlider())
+            {
+                if (progressIngr <= 0)
+                {
+                    readyToStady = false;
+                    readyToAddIngr = true;
+                    if (currentRecipeIngr != recipe.MassIngr.Length - 1)
+                    {
+
+                        currentRecipeIngr = currentRecipeIngr + 1;
+                        nextIngrView.transform.GetChild(1).GetComponent<Image>().sprite = Resources.Load<Sprite>(ListIngredient.GetSpritePassById(recipe.MassIngr[currentRecipeIngr]));
+                       
+
+
+                        progressIngr = 0 ;
+                       // progressView.text = progressIngr.ToString("0.00");
+
+                    }
+                    else
+                    {
+                        EndCooking();
+                    }
+                }
+                else
+                {
+                    nextIngrView.transform.GetChild(0).GetComponent<Image>().fillAmount += 1.0f / (R+G+B) * Time.deltaTime;
+                   progressIngr -= Time.deltaTime;
+                   // progressView.text = progressIngr.ToString("0.00");
+                }
+
+            }
 
            // if (timeByRefine > 0)
            // {
-                DirectionSircl();
+               // DirectionSircl();
                 //timeByRefine -= Time.deltaTime;
                // timerByStady.text = timeByRefine.ToString("0.0");
 
@@ -77,22 +120,24 @@ public class CookingProcess : MonoBehaviour
             //    readyToAddIngr = true;
                // timerByStady.text = "";
             //}
-            if (R == 0 && G == 0 && B == 0)
-            {
-                readyToStady = false;
-                readyToAddIngr = true;
-                if (currentRecipeIngr != recipe.MassIngr.Length - 1)
-                {
+
+
+            //if (R == 0 && G == 0 && B == 0)
+            //{
+            //    readyToStady = false;
+            //    readyToAddIngr = true;
+            //    if (currentRecipeIngr != recipe.MassIngr.Length - 1)
+            //    {
                    
-                    currentRecipeIngr = currentRecipeIngr+1;
-                    nextIngrView.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(ListIngredient.GetSpritePassById(recipe.MassIngr[currentRecipeIngr]));
-                    Debug.Log(recipe.MassIngr[currentRecipeIngr] + " " + currentRecipeIngr);
-                }
-                else
-                {
-                    EndCooking();
-                }
-            }
+            //        currentRecipeIngr = currentRecipeIngr+1;
+            //        nextIngrView.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(ListIngredient.GetSpritePassById(recipe.MassIngr[currentRecipeIngr]));
+            //        Debug.Log(recipe.MassIngr[currentRecipeIngr] + " " + currentRecipeIngr);
+            //    }
+            //    else
+            //    {
+            //        EndCooking();
+            //    }
+            //}
 
 
         }
@@ -100,20 +145,19 @@ public class CookingProcess : MonoBehaviour
 
     public void EndCooking()
     {
+        ResetAllSlider();
         gridSequence.SetActive(false);
         ExitButton.SetActive(false);
         RecipesButton.SetActive(true);
         currentRecipeIngr = -1;
         currentIngr = -1;
         recipe = null;
-        R = -1;
+
+       //progressView.transform.gameObject.SetActive(false);
+        
+        //R = -1;
     }
-    public void DirectionSircl()
-    {
-
-
-
-    }
+    public void DirectionSircl(){ }
 
 
 
@@ -123,10 +167,15 @@ public class CookingProcess : MonoBehaviour
         if (readyToAddIngr && currentIngr != -1)
         {
             ListIngredient.ingredients[currentIngr].GetRGBIngr(out R, out G, out B);
+            progressIngr = R + G + B;
             readyToAddIngr = false;
             readyToStady = true;
+
+
+
+            InitAllSlider();
             //timeByRefine = 30f;
-            Debug.Log(ListIngredient.ingredients[currentIngr].Id);
+            //Debug.Log(ListIngredient.ingredients[currentIngr].Id);
         }
     }
 
@@ -139,11 +188,105 @@ public class CookingProcess : MonoBehaviour
         for (int i = 0; i < gridSequence.transform.childCount; i++)
             Destroy(gridSequence.transform.GetChild(i).gameObject);
 
-        
+        //активация очереди ингредиентов
         gridSequence.SetActive(true);
-        gridSequence.GetComponent<GeneratorIngrSeq>().Repeat();
+        gridSequence.GetComponent<GeneratorIngrSeq>().Repeat();//метод повторения спавна ингредиентов
+
+       // progressView.transform.gameObject.SetActive(true);
 
 
+    }
+
+    public bool ChekGreenZoneAllSlider()
+    {
+  
+        switch (recipe.Hard)
+        {
+            case 0:
+                return SliderR.GetComponent<CookingSlider>().RInGreenZone();
+                break;
+            case 1:
+                return SliderR.GetComponent<CookingSlider>().RInGreenZone()& SliderG.GetComponent<CookingSlider>().RInGreenZone();
+                break;
+            case 2:
+                return SliderR.GetComponent<CookingSlider>().RInGreenZone() & SliderG.GetComponent<CookingSlider>().RInGreenZone()& SliderB.GetComponent<CookingSlider>().RInGreenZone();
+                break;
+        }
+        return false;
+    }
+
+    public void ResetAllSlider()
+    {
+
+        switch (recipe.Hard)
+        {
+            case 0:
+                SliderR.GetComponent<CookingSlider>().ResetSlider();
+                break;
+            case 1:
+                SliderR.GetComponent<CookingSlider>().ResetSlider();
+                SliderG.GetComponent<CookingSlider>().ResetSlider();
+                break;
+            case 2:
+                SliderR.GetComponent<CookingSlider>().ResetSlider();
+                SliderG.GetComponent<CookingSlider>().ResetSlider();
+                SliderB.GetComponent<CookingSlider>().ResetSlider();
+                break;
+        }
+        nextIngrView.transform.GetChild(0).GetComponent<Image>().fillAmount = 0;
+
+
+    }
+    public void InitAllSlider()
+    {
+
+        switch (recipe.Hard)
+        {
+            case 0:
+                SliderR.GetComponent<CookingSlider>().pause = true;
+                break;
+            case 1:
+                SliderR.GetComponent<CookingSlider>().pause = true;
+                SliderG.GetComponent<CookingSlider>().pause = true;
+                break;
+            case 2:
+                SliderR.GetComponent<CookingSlider>().pause = true;
+                SliderG.GetComponent<CookingSlider>().pause = true;
+                SliderB.GetComponent<CookingSlider>().pause = true;
+                break;
+        }
+
+    }
+
+    public void UpButtonCook(int x)
+    {
+        switch (x)
+        {
+            case 0:
+                SliderR.GetComponent<CookingSlider>().ChangeVariableVal(currentChangeVall);
+                break;
+            case 1:
+                SliderG.GetComponent<CookingSlider>().ChangeVariableVal(currentChangeVall);
+                break;
+            case 2:
+                SliderB.GetComponent<CookingSlider>().ChangeVariableVal(currentChangeVall);
+                break;
+        }
+    }
+    public void DownButtonCook(int x)
+    {
+        switch (x)
+        {
+            case 0:
+                SliderR.GetComponent<CookingSlider>().ChangeVariableVal(-currentChangeVall);
+                break;
+            case 1:
+                SliderG.GetComponent<CookingSlider>().ChangeVariableVal(-currentChangeVall);
+                break;
+            case 2:
+                SliderB.GetComponent<CookingSlider>().ChangeVariableVal(-currentChangeVall);
+                break;
+        }
     }
 
 
