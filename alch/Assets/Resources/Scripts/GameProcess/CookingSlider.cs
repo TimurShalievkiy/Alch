@@ -89,10 +89,10 @@ public class CookingSlider : MonoBehaviour
     {
         if (curPos >= minGreenZoneVal && curPos <= maxGreenZoneVal)
         {
-            this.GetComponent<Slider>().handleRect.GetComponent<Image>().color = Color.green;
+          //this.GetComponent<Slider>().handleRect.GetComponent<Image>().color = Color.green;
             return true;
         }
-        this.GetComponent<Slider>().handleRect.GetComponent<Image>().color = Color.red;
+        //this.GetComponent<Slider>().handleRect.GetComponent<Image>().color = Color.red;
 
         return false;
     }
@@ -112,7 +112,7 @@ public class CookingSlider : MonoBehaviour
         curPos = 0; // текущая позиция
         newIng = true;
         timeChangeStage = 0; //Время стадии изменения
-        this.GetComponent<Slider>().handleRect.GetComponent<Image>().color = Color.red;
+        //this.GetComponent<Slider>().handleRect.GetComponent<Image>().color = Color.red;
         this.GetComponent<Slider>().value = curPos;
 
     }

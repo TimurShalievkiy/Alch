@@ -144,6 +144,7 @@ public class CookingProcess : MonoBehaviour
         ExitButton.SetActive(false);
         RecipesButton.SetActive(true);
         currentRecipeIngr = -1;
+        readyToAddIngr = true;
         currentIngr = -1;
         recipe = null;
 
@@ -189,7 +190,7 @@ public class CookingProcess : MonoBehaviour
 
     public bool ChekGreenZoneAllSlider()
     {
-        switch (recipe.Hard)
+        switch (recipeHard)
         {
             case 0:
                 return SliderR.GetComponent<CookingSlider>().RInGreenZone();
@@ -208,7 +209,7 @@ public class CookingProcess : MonoBehaviour
 
     public void ResetAllSlider()
     {
-        switch (recipe.Hard)
+        switch (recipeHard)
         {
             case 0:
                 SliderR.GetComponent<CookingSlider>().ResetSlider();
@@ -230,7 +231,9 @@ public class CookingProcess : MonoBehaviour
 
     public void InitAllSlider()
     {
-        switch (recipe.Hard)
+
+        Debug.Log(recipeHard);
+        switch (recipeHard)
         {
             case 0:
                 SliderR.GetComponent<CookingSlider>().pause = true;

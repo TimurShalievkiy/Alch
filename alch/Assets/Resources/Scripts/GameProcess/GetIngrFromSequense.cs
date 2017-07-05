@@ -13,7 +13,7 @@ public class GetIngrFromSequense : MonoBehaviour {
         {
             Destroy(collision.gameObject);
             CookingProcess.currentIngr = System.Convert.ToInt32(collision.transform.name);
-            this.gameObject.GetComponent<Image>().color = new Color(255, 255, 0);
+            //this.gameObject.GetComponent<Image>().color = new Color(255, 255, 0);
             g.GetComponent<CookingProcess>().AddIngredientToKattle();
         }
     }
