@@ -160,6 +160,7 @@ public class CookingProcess : MonoBehaviour
     //добавление ингредиента для обработки 
     public void AddIngredientToKattle()
     {
+       // Debug.Log(readyToAddIngr + " " + currentIngr);
         if (readyToAddIngr && currentIngr != -1)
         {
             ListIngredient.ingredients[currentIngr].GetRGBIngr(out R, out G, out B);
@@ -168,6 +169,7 @@ public class CookingProcess : MonoBehaviour
             readyToStady = true;
 
             InitAllSlider();
+            
         }
     }
 

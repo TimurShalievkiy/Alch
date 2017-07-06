@@ -42,14 +42,20 @@ public class CookingSlider : MonoBehaviour
             timeChangeStage -= Time.deltaTime;
 
 
-       
-              //  if (upDown && /*curPos < minValSlider &&*/ (curPos + changeValSlider)< maxValSlider)
-             //       curPos -= changeValSlider;
-             //   else if(!upDown &&/* curPos > maxValSlider*/(curPos - changeValSlider) > minValSlider)
-             //       curPos += changeValSlider;
 
-        if((curPos + changeValSlider) < maxValSlider && (curPos + changeValSlider) > minValSlider)
-                curPos += changeValSlider;
+            //  if (upDown && /*curPos < minValSlider &&*/ (curPos + changeValSlider)< maxValSlider)
+            //       curPos -= changeValSlider;
+            //   else if(!upDown &&/* curPos > maxValSlider*/(curPos - changeValSlider) > minValSlider)
+            //       curPos += changeValSlider;
+
+            if ((curPos + changeValSlider) < maxValSlider && (curPos + changeValSlider) > minValSlider)
+            {
+                if(upDown)
+                    curPos += changeValSlider;
+                else
+                    curPos -= changeValSlider;
+            }
+               
         }
             this.GetComponent<Slider>().value = curPos;
         
@@ -80,10 +86,10 @@ public class CookingSlider : MonoBehaviour
 
     public void ChangeVariableVal(float x)
     {
-        //if (upDown)
+       // if (upDown)
             changeValSlider += x; 
-       // else if(!upDown)
-       //      changeValSlider -= x;        
+       //else if(!upDown)
+       //     changeValSlider -= x;        
     }
     public bool RInGreenZone()
     {
