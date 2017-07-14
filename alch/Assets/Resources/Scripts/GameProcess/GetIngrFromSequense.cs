@@ -11,11 +11,15 @@ public class GetIngrFromSequense : MonoBehaviour {
     {
         if (collision.GetComponent<DragEndDrop>())
         {
-            Destroy(collision.gameObject);
-            CookingProcess.currentIngr = System.Convert.ToInt32(collision.transform.name);
-            //Debug.Log(123123123);
-            //this.gameObject.GetComponent<Image>().color = new Color(255, 255, 0);
-            g.GetComponent<CookingProcess>().AddIngredientToKattle();
+            try
+            {
+                Destroy(collision.gameObject);
+                CookingProcess.currentIngr = System.Convert.ToInt32(collision.transform.name);
+                g.GetComponent<CookingProcess>().AddIngredientToKattle();
+            }
+            catch
+            {
+            }
         }
     }
 

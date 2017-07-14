@@ -14,10 +14,11 @@ public class RecipesSelector : MonoBehaviour
         foreach (Recipe r in ListRecipes.recipes)
         {
             if (r.Id == id)
-            {
-                CookingProcess.recipeHard = r.Hard;
+            {             
                 CookingProcess.recipe = new Recipe(r.Id,r.Hard, r.MassIngr);
+                CookingProcess.recipeHard = r.Hard;
                 CookingProcess.currentRecipeIngr = r.MassIngr[0];
+                CookingProcess.firstStady = true;
                 break;
             };
         }

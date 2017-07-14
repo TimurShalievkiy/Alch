@@ -11,35 +11,31 @@ public class CookingProcess : MonoBehaviour
     public GameObject ConteinerIngr;
     public GameObject nextIngrView;
 
-    public GameObject ExitButton;
+    public GameObject CookingPanelControl;
+    public GameObject StartPanelControl;
 
-    public GameObject RecipesButton;
 
     public GameObject SliderR;
     public GameObject SliderG;
     public GameObject SliderB;
-    // public GameObject RImage;
-    // public GameObject GImage;
-    // public GameObject BImage;
-
 
     public static Recipe recipe;
     public static int currentIngr;
 
     public int currenSlider = -1;
-    //public Text timerByStady;
-    // public Text progressView;
-
-
 
     bool readyToAddIngr;
     bool readyToStady;
+
+    public static  bool firstStady = false;
+    bool secondStady;
 
 
     public static int R;
     public static int G;
     public static int B;
 
+    public int allCounrRGB;
 
     public float progressIngr;
     //float timeByRefine = 30f;
@@ -52,6 +48,9 @@ public class CookingProcess : MonoBehaviour
 
     public static int recipeHard = 0; // сложность рецепта влияет на количество слайдеров
 
+    public static int lifeFirstStadyCooking;//количество жизней первой стадии готовки
+    public Text lifeText;
+
     void Start()
     {
         readyToAddIngr = true;
@@ -62,7 +61,31 @@ public class CookingProcess : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (firstStady)
+        {
+            if (lifeFirstStadyCooking == 0)
+                EndCooking();
 
+            if ( currentRecipeIngr != -1 && nextIngrView.transform.GetChild(1).name != recipe.MassIngr[currentRecipeIngr].ToString() )
+            {
+                nextIngrView.transform.GetChild(1).GetComponent<Image>().sprite = Resources.Load<Sprite>(ListIngredient.GetSpritePassById(recipe.MassIngr[currentRecipeIngr]));
+                nextIngrView.transform.GetChild(1).name = recipe.MassIngr[currentRecipeIngr].ToString();
+            }
+        
+
+        }
+        if (secondStady)
+        {
+            Debug.Log("SecondStady");
+            InitAllSlider();
+            secondStady = false;
+            gridSequence.SetActive(false);
+            lifeText.transform.parent.gameObject.SetActive(false);
+        }
+        
+
+        //-----------------------------------------------------------------------------------------------------------
+        /*
         if (currentRecipeIngr != -1 && nextIngrView.transform.GetChild(1).name != recipe.MassIngr[currentRecipeIngr].ToString())
         {
             nextIngrView.transform.GetChild(1).GetComponent<Image>().sprite = Resources.Load<Sprite>(ListIngredient.GetSpritePassById(recipe.MassIngr[currentRecipeIngr]));
@@ -97,6 +120,8 @@ public class CookingProcess : MonoBehaviour
                 }
 
             }
+//--------------------------------------------------------------------------------------------------------------
+        
 
             // if (timeByRefine > 0)
             // {
@@ -135,42 +160,56 @@ public class CookingProcess : MonoBehaviour
 
 
         }
+        */
+        //-----------------------------------------------------------------------------------------------
     }
 
     public void EndCooking()
     {
+        if (gridSequence.transform.childCount > 0)
+            for (int i = 0; i < gridSequence.transform.childCount; i++)
+                Destroy(gridSequence.transform.GetChild(i).gameObject);
+
+
         ResetAllSlider();
         gridSequence.SetActive(false);
-        ExitButton.SetActive(false);
-        RecipesButton.SetActive(true);
+        CookingPanelControl.SetActive(false);
+        StartPanelControl.SetActive(true);
         currentRecipeIngr = -1;
         readyToAddIngr = true;
         currentIngr = -1;
+        firstStady = false;
         recipe = null;
-
-        //progressView.transform.gameObject.SetActive(false);
-
-        //R = -1;
+        allCounrRGB = 0;
+        gridSequence.GetComponent<GeneratorIngrSeq>().ResetSequensParametrs();
     }
-
-    public void DirectionSircl() { }
-
-
 
     //добавление ингредиента для обработки 
     public void AddIngredientToKattle()
     {
-       // Debug.Log(readyToAddIngr + " " + currentIngr);
-        if (readyToAddIngr && currentIngr != -1)
+        if (nextIngrView.transform.GetChild(1).name == currentIngr.ToString())
         {
-            ListIngredient.ingredients[currentIngr].GetRGBIngr(out R, out G, out B);
-            progressIngr = R + G + B;
-            readyToAddIngr = false;
-            readyToStady = true;
+            lifeText.text = lifeFirstStadyCooking.ToString();
+            if (currentRecipeIngr < recipe.MassIngr.Length - 1)
+            {
+                currentRecipeIngr = currentRecipeIngr + 1;
+                allCounrRGB += ListIngredient.ingredients[currentIngr].GetRGBIngr();
 
-            InitAllSlider();
-            
+            }
+            else if (currentRecipeIngr == recipe.MassIngr.Length - 1)
+            {
+                firstStady = false;
+                secondStady = true;
+            }
         }
+        else
+        {
+            lifeFirstStadyCooking--;
+            lifeText.text = lifeFirstStadyCooking.ToString();
+            Debug.Log("----");
+        }
+
+
     }
 
 
@@ -186,6 +225,11 @@ public class CookingProcess : MonoBehaviour
         gridSequence.SetActive(true);
         gridSequence.GetComponent<GeneratorIngrSeq>().Repeat();//метод повторения спавна ингредиентов
 
+
+
+        lifeFirstStadyCooking = 3;
+        lifeText.text = lifeFirstStadyCooking.ToString();
+        lifeText.transform.parent.gameObject.SetActive(true);
     }
 
 

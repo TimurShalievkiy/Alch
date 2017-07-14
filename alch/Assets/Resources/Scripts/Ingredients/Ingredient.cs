@@ -39,4 +39,8 @@ public class Ingredient : MonoBehaviour {
         G = this.G;
         B = this.B;
     }
+    public int GetRGBIngr()
+    {   
+       return this.R + this.G+ this.B;
+    }
 }
