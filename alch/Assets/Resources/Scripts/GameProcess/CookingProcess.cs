@@ -14,6 +14,7 @@ public class CookingProcess : MonoBehaviour
     public GameObject CookingPanelControl;
     public GameObject StartPanelControl;
 
+    public GameObject Kattle;
 
     public GameObject SliderR;
     public GameObject SliderG;
@@ -76,6 +77,7 @@ public class CookingProcess : MonoBehaviour
         }
         if (secondStady)
         {
+            Kattle.GetComponent<Animator>().SetBool("kettleUp", true);
             Debug.Log("SecondStady");
             InitAllSlider();
             secondStady = false;
@@ -182,6 +184,7 @@ public class CookingProcess : MonoBehaviour
         recipe = null;
         allCounrRGB = 0;
         gridSequence.GetComponent<GeneratorIngrSeq>().ResetSequensParametrs();
+        Kattle.GetComponent<Animator>().SetBool("kettleUp", true);
     }
 
     //добавление ингредиента для обработки 
@@ -216,6 +219,7 @@ public class CookingProcess : MonoBehaviour
     //инициализация процесса готовки.
     public void LoadIngrInSequence()
     {
+        Kattle.GetComponent<Animator>().SetBool("kettleUp", false);
         //удаление дочерних єлементов из очереди.
         if (gridSequence.transform.childCount > 0)
             for (int i = 0; i < gridSequence.transform.childCount; i++)

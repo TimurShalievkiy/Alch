@@ -91,6 +91,7 @@
   <ItemGroup>
     <Compile Include="Assets\Resources\Scripts\GameProcess\CookingProcess.cs" />
     <Compile Include="Assets\Resources\Scripts\GameProcess\CookingSlider.cs" />
+    <Compile Include="Assets\Resources\Scripts\GameProcess\CookingToub.cs" />
     <Compile Include="Assets\Resources\Scripts\GameProcess\DeleteZone.cs" />
     <Compile Include="Assets\Resources\Scripts\GameProcess\GetIngrFromSequense.cs" />
     <Compile Include="Assets\Resources\Scripts\GameProcess\PauseButton.cs" />
