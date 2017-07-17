@@ -15,6 +15,7 @@ public class CookingProcess : MonoBehaviour
     public GameObject StartPanelControl;
 
     public GameObject Kattle;
+    public GameObject CookingToubs;
 
     public GameObject SliderR;
     public GameObject SliderG;
@@ -79,7 +80,9 @@ public class CookingProcess : MonoBehaviour
         {
             Kattle.GetComponent<Animator>().SetBool("kettleUp", true);
             Debug.Log("SecondStady");
-            InitAllSlider();
+            //InitAllSlider();
+
+            ActivateCookingToubsByHard();
             secondStady = false;
             gridSequence.SetActive(false);
             lifeText.transform.parent.gameObject.SetActive(false);
@@ -282,22 +285,22 @@ public class CookingProcess : MonoBehaviour
     public void InitAllSlider()
     {
 
-        Debug.Log(recipeHard);
-        switch (recipeHard)
-        {
-            case 0:
-                SliderR.GetComponent<CookingSlider>().pause = true;
-                break;
-            case 1:
-                SliderR.GetComponent<CookingSlider>().pause = true;
-                SliderG.GetComponent<CookingSlider>().pause = true;
-                break;
-            case 2:
-                SliderR.GetComponent<CookingSlider>().pause = true;
-                SliderG.GetComponent<CookingSlider>().pause = true;
-                SliderB.GetComponent<CookingSlider>().pause = true;
-                break;
-        }
+
+        //switch (recipeHard)
+        //{
+        //    case 0:
+        //        SliderR.GetComponent<CookingSlider>().pause = true;
+        //        break;
+        //    case 1:
+        //        SliderR.GetComponent<CookingSlider>().pause = true;
+        //        SliderG.GetComponent<CookingSlider>().pause = true;
+        //        break;
+        //    case 2:
+        //        SliderR.GetComponent<CookingSlider>().pause = true;
+        //        SliderG.GetComponent<CookingSlider>().pause = true;
+        //        SliderB.GetComponent<CookingSlider>().pause = true;
+        //        break;
+        //}
     }
 
     public void UpButtonCook(int x)
@@ -367,6 +370,32 @@ public class CookingProcess : MonoBehaviour
     public void SetCurrentSliderVal(int x)
     {
         currenSlider = x;
+    }
+
+
+    //активация и инициализация трубок в зависимости от сложности рецепта 
+    public void ActivateCookingToubsByHard()
+    {
+        Debug.Log(recipeHard);
+        switch (recipeHard)
+        {
+            case 0:
+                CookingToubs.transform.GetChild(0).gameObject.SetActive(true);
+                CookingToubs.transform.GetChild(0).transform.GetChild(0).GetComponent<CookingToub>().IninToub();
+                break;
+            case 1:
+                CookingToubs.transform.GetChild(1).gameObject.SetActive(true);
+                CookingToubs.transform.GetChild(1).transform.GetChild(0).GetComponent<CookingToub>().IninToub();
+                CookingToubs.transform.GetChild(1).transform.GetChild(1).GetComponent<CookingToub>().IninToub();
+                break;
+            case 2:
+                CookingToubs.transform.GetChild(2).gameObject.SetActive(true);
+                CookingToubs.transform.GetChild(2).transform.GetChild(0).GetComponent<CookingToub>().IninToub();
+                CookingToubs.transform.GetChild(2).transform.GetChild(1).GetComponent<CookingToub>().IninToub();
+                CookingToubs.transform.GetChild(2).transform.GetChild(2).GetComponent<CookingToub>().IninToub();
+                break;
+        }
+
     }
     //-------------------------------------------------
 

@@ -35,39 +35,50 @@ public class CookingToub : MonoBehaviour {
     public float timeRandDirection = 0;
 
 
+    //включена ли труба
+    public bool toubWork;
 
     public bool val = true;
 
     public void Update()
     {
-        if (val)
+        if (toubWork)
         {
-            IninToub();
-            val = false;
-        }
-        else
-        {
-
-            //если время таймера закончилось выполняется переназначение 
-            if (timeRandDirection <= 0)
+            if (val)
             {
-                RandVal();               
+                IninToub();
+                val = false;
             }
-            else{
+            else
+            {
 
-                //вызов метода изменения значения трубки
-                ChangeCurVal(currChangVal);
+                //если время таймера закончилось выполняется переназначение 
+                if (timeRandDirection <= 0)
+                {
+                    RandVal();
+                }
+                else
+                {
 
-                //таймер до изменения напрвления и вызова метода  RandVal()
-                timeRandDirection -= Time.deltaTime;
+                    //вызов метода изменения значения трубки
+                    ChangeCurVal(currChangVal);
+
+                    //таймер до изменения напрвления и вызова метода  RandVal()
+                    timeRandDirection -= Time.deltaTime;
+                }
+
             }
-            
         }
     }
 
     //инициализация трубы для работы 
     public void IninToub()
     {
+
+
+        //задаем текущее значение трубки 
+        currVal = 1;
+
         //максимальное значение трубки
         maxValToube = 20;
 
@@ -79,6 +90,10 @@ public class CookingToub : MonoBehaviour {
 
         //помещение заполняющей плоскости в стартовую позицию
         fillArea.transform.localPosition = new Vector2(0f, -weightFillZone);
+
+
+        //включение трубки в работу 
+        toubWork = true;
 
     }
 
