@@ -14,14 +14,27 @@ public class CookingProcess : MonoBehaviour
     public GameObject CookingPanelControl;
     public GameObject StartPanelControl;
 
+
+    //обьект котел
     public GameObject Kattle;
+
+    //измерителььные трубки
     public GameObject CookingToubs;
+
+    //пойнтер зоны для переключения между трубками
+    public GameObject PointerZones;
+
+
 
     public GameObject SliderR;
     public GameObject SliderG;
     public GameObject SliderB;
 
+
+    //текущий рецепт
     public static Recipe recipe;
+
+
     public static int currentIngr;
 
     public int currenSlider = -1;
@@ -82,6 +95,8 @@ public class CookingProcess : MonoBehaviour
             Debug.Log("SecondStady");
             //InitAllSlider();
 
+
+            ActivatePointerZonesByHard();
             ActivateCookingToubsByHard();
             secondStady = false;
             gridSequence.SetActive(false);
@@ -176,7 +191,13 @@ public class CookingProcess : MonoBehaviour
                 Destroy(gridSequence.transform.GetChild(i).gameObject);
 
 
-        ResetAllSlider();
+        //ResetAllSlider();
+
+
+        DeactivateCookingToubsByHard();
+        DeactivatePointerZonesByHard();
+
+
         gridSequence.SetActive(false);
         CookingPanelControl.SetActive(false);
         StartPanelControl.SetActive(true);
@@ -397,6 +418,80 @@ public class CookingProcess : MonoBehaviour
         }
 
     }
+
+    //деактивация трубок в зависимости от сложности рецепта 
+    public void DeactivateCookingToubsByHard()
+    {
+        Debug.Log(recipeHard);
+        switch (recipeHard)
+        {
+            case 0:
+                CookingToubs.transform.GetChild(0).gameObject.SetActive(false);
+                CookingToubs.transform.GetChild(0).transform.GetChild(0).GetComponent<CookingToub>().ResetToub();
+                break;
+            case 1:
+                CookingToubs.transform.GetChild(1).gameObject.SetActive(false);
+                CookingToubs.transform.GetChild(1).transform.GetChild(0).GetComponent<CookingToub>().ResetToub();
+                CookingToubs.transform.GetChild(1).transform.GetChild(1).GetComponent<CookingToub>().ResetToub();
+                break;
+            case 2:
+                CookingToubs.transform.GetChild(2).gameObject.SetActive(false);
+                CookingToubs.transform.GetChild(2).transform.GetChild(0).GetComponent<CookingToub>().ResetToub();
+                CookingToubs.transform.GetChild(2).transform.GetChild(1).GetComponent<CookingToub>().ResetToub();
+                CookingToubs.transform.GetChild(2).transform.GetChild(2).GetComponent<CookingToub>().ResetToub();
+                break;
+        }
+
+    }
     //-------------------------------------------------
+    //активация пойнтер зон для переключения между трубками в зависимости от сложности рецепта 
+    public void ActivatePointerZonesByHard()
+    {
+        Debug.Log(recipeHard);
+        switch (recipeHard)
+        {
+            case 0:
+                PointerZones.transform.GetChild(0).gameObject.SetActive(true);
+               // PointerZones.transform.GetChild(0).transform.GetChild(0).GetComponent<CookingToub>().IninToub();
+                break;
+            case 1:
+                PointerZones.transform.GetChild(1).gameObject.SetActive(true);
+               // CookingToubs.transform.GetChild(1).transform.GetChild(0).GetComponent<CookingToub>().IninToub();
+               // CookingToubs.transform.GetChild(1).transform.GetChild(1).GetComponent<CookingToub>().IninToub();
+                break;
+            case 2:
+                PointerZones.transform.GetChild(2).gameObject.SetActive(true);
+               // CookingToubs.transform.GetChild(2).transform.GetChild(0).GetComponent<CookingToub>().IninToub();
+               // CookingToubs.transform.GetChild(2).transform.GetChild(1).GetComponent<CookingToub>().IninToub();
+               // CookingToubs.transform.GetChild(2).transform.GetChild(2).GetComponent<CookingToub>().IninToub();
+                break;
+        }
+
+    }
+
+    //деактивация пойнтер зон для переключения между трубками в зависимости от сложности рецепта 
+    public void DeactivatePointerZonesByHard()
+    {
+        Debug.Log(recipeHard);
+        switch (recipeHard)
+        {
+            case 0:
+                PointerZones.transform.GetChild(0).gameObject.SetActive(false);
+                // PointerZones.transform.GetChild(0).transform.GetChild(0).GetComponent<CookingToub>().IninToub();
+                break;
+            case 1:
+                PointerZones.transform.GetChild(1).gameObject.SetActive(false);
+                // CookingToubs.transform.GetChild(1).transform.GetChild(0).GetComponent<CookingToub>().IninToub();
+                // CookingToubs.transform.GetChild(1).transform.GetChild(1).GetComponent<CookingToub>().IninToub();
+                break;
+            case 2:
+                PointerZones.transform.GetChild(2).gameObject.SetActive(false);
+                // CookingToubs.transform.GetChild(2).transform.GetChild(0).GetComponent<CookingToub>().IninToub();
+                // CookingToubs.transform.GetChild(2).transform.GetChild(1).GetComponent<CookingToub>().IninToub();
+                // CookingToubs.transform.GetChild(2).transform.GetChild(2).GetComponent<CookingToub>().IninToub();
+                break;
+        }
+
+    }
 
 }

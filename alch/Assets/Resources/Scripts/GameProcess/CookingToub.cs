@@ -123,6 +123,7 @@ public class CookingToub : MonoBehaviour {
         {
             //добавление переменной к текущему значению
             currVal += x;
+
             //перемещение заполняющей плоскости
             fillArea.transform.localPosition = new Vector2(0f, -(weightFillZone - (currVal * ratioMaxAndCurVal)));
         }
