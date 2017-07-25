@@ -42,7 +42,7 @@ public class CookingProcess : MonoBehaviour
     bool readyToAddIngr;
     bool readyToStady;
 
-    public static  bool firstStady = false;
+    public static bool firstStady = false;
     bool secondStady;
 
 
@@ -55,7 +55,8 @@ public class CookingProcess : MonoBehaviour
     public float progressIngr;
     //float timeByRefine = 30f;
 
-    public static int currentRecipeIngr = -1;
+    // public static int currentRecipeIngr = -1;
+    // public  int currentPosRecipeIngr = -1;
 
 
     public float currentChangeVall = 0.02f; //временная переменная для изменениея значения по клику 
@@ -69,28 +70,32 @@ public class CookingProcess : MonoBehaviour
     void Start()
     {
         readyToAddIngr = true;
-        currentRecipeIngr = -1;
+        // currentRecipeIngr = -1;
     }
 
 
     // Update is called once per frame
     void Update()
     {
+        //первая стадия готовки
         if (firstStady)
         {
+            //если показатель жизней равен 0 заканчиваем готовку
             if (lifeFirstStadyCooking == 0)
                 EndCooking();
 
-            if ( currentRecipeIngr != -1 && nextIngrView.transform.GetChild(1).name != recipe.MassIngr[currentRecipeIngr].ToString() )
+            //если рецепт доступен и не достигнут конец рецепта
+           if (recipe.RecipeStatus && !recipe.EndOfRecipe)
             {
-                nextIngrView.transform.GetChild(1).GetComponent<Image>().sprite = Resources.Load<Sprite>(ListIngredient.GetSpritePassById(recipe.MassIngr[currentRecipeIngr]));
-                nextIngrView.transform.GetChild(1).name = recipe.MassIngr[currentRecipeIngr].ToString();
+                //устанавливаем спрайт и имя панели отображения текущего ингредиента 
+                nextIngrView.transform.GetChild(1).GetComponent<Image>().sprite = recipe.GetCurrentSpriteIngr;
+                nextIngrView.transform.GetChild(1).name = recipe.CurrentIngrId.ToString();
             }
-        
-
         }
+        //вторая стадия
         if (secondStady)
         {
+            nextIngrView.gameObject.SetActive(false);
             Kattle.GetComponent<Animator>().SetBool("kettleUp", true);
             Debug.Log("SecondStady");
             //InitAllSlider();
@@ -102,96 +107,41 @@ public class CookingProcess : MonoBehaviour
             gridSequence.SetActive(false);
             lifeText.transform.parent.gameObject.SetActive(false);
         }
-        
 
-        //-----------------------------------------------------------------------------------------------------------
-        /*
-        if (currentRecipeIngr != -1 && nextIngrView.transform.GetChild(1).name != recipe.MassIngr[currentRecipeIngr].ToString())
-        {
-            nextIngrView.transform.GetChild(1).GetComponent<Image>().sprite = Resources.Load<Sprite>(ListIngredient.GetSpritePassById(recipe.MassIngr[currentRecipeIngr]));
-            nextIngrView.transform.GetChild(1).name = recipe.MassIngr[currentRecipeIngr].ToString();
-            ResetAllSlider();
-        }
-
-        if (readyToStady)
-        {
-
-            if (ChekGreenZoneAllSlider())
-            {
-                if (progressIngr <= 0)
-                {
-                    readyToStady = false;
-                    readyToAddIngr = true;
-                    if (currentRecipeIngr != recipe.MassIngr.Length - 1)
-                    {
-                        currentRecipeIngr = currentRecipeIngr + 1;
-                        nextIngrView.transform.GetChild(1).GetComponent<Image>().sprite = Resources.Load<Sprite>(ListIngredient.GetSpritePassById(recipe.MassIngr[currentRecipeIngr]));
-                        progressIngr = 0;
-                    }
-                    else
-                    {
-                        EndCooking();
-                    }
-                }
-                else
-                {
-                    nextIngrView.transform.GetChild(0).GetComponent<Image>().fillAmount += 1.0f / (R + G + B) * Time.deltaTime;
-                    progressIngr -= Time.deltaTime;
-                }
-
-            }
-//--------------------------------------------------------------------------------------------------------------
-        
-
-            // if (timeByRefine > 0)
-            // {
-            // DirectionSircl();
-            //timeByRefine -= Time.deltaTime;
-            // timerByStady.text = timeByRefine.ToString("0.0");
-
-            // RImage.transform.GetChild(0).transform.GetChild(0).GetComponent<Text>().text = R.ToString();
-            // GImage.transform.GetChild(0).transform.GetChild(0).GetComponent<Text>().text = G.ToString();
-            //  BImage.transform.GetChild(0).transform.GetChild(0).GetComponent<Text>().text = B.ToString();
-            //}
-            //else
-            //{
-            //    readyToStady = false;
-            //    readyToAddIngr = true;
-            // timerByStady.text = "";
-            //}
-
-
-            //if (R == 0 && G == 0 && B == 0)
-            //{
-            //    readyToStady = false;
-            //    readyToAddIngr = true;
-            //    if (currentRecipeIngr != recipe.MassIngr.Length - 1)
-            //    {
-
-            //        currentRecipeIngr = currentRecipeIngr+1;
-            //        nextIngrView.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(ListIngredient.GetSpritePassById(recipe.MassIngr[currentRecipeIngr]));
-            //        Debug.Log(recipe.MassIngr[currentRecipeIngr] + " " + currentRecipeIngr);
-            //    }
-            //    else
-            //    {
-            //        EndCooking();
-            //    }
-            //}
-
-
-        }
-        */
-        //-----------------------------------------------------------------------------------------------
     }
+
+    //добавление ингредиента для обработки 
+    public void AddIngredientToKattle()
+    {
+        //если заброшенный ингредиент равен текущему ингредиенту рецепта
+        if (recipe.EqualsIngr(currentIngr))
+        {
+            //инкрементируем ингредиент в рецепте
+            recipe.NextStepIngr();
+
+            //при достижении конца рецепта переход на следующую стадию
+            if (recipe.EndOfRecipe)
+            {
+                firstStady = false;
+                secondStady = true;
+            }
+        }
+        //иначе уменьшаем показатель жизней
+        else
+        {
+            lifeFirstStadyCooking--;
+            lifeText.text = lifeFirstStadyCooking.ToString();
+        }
+    }
+
+
+
 
     public void EndCooking()
     {
         if (gridSequence.transform.childCount > 0)
             for (int i = 0; i < gridSequence.transform.childCount; i++)
                 Destroy(gridSequence.transform.GetChild(i).gameObject);
-
-
-        //ResetAllSlider();
 
 
         DeactivateCookingToubsByHard();
@@ -201,43 +151,17 @@ public class CookingProcess : MonoBehaviour
         gridSequence.SetActive(false);
         CookingPanelControl.SetActive(false);
         StartPanelControl.SetActive(true);
-        currentRecipeIngr = -1;
         readyToAddIngr = true;
         currentIngr = -1;
         firstStady = false;
-        recipe = null;
+        recipe.RecipeStatus = false;
         allCounrRGB = 0;
+
+
         gridSequence.GetComponent<GeneratorIngrSeq>().ResetSequensParametrs();
-        Kattle.GetComponent<Animator>().SetBool("kettleUp", true);
-    }
-
-    //добавление ингредиента для обработки 
-    public void AddIngredientToKattle()
-    {
-        if (nextIngrView.transform.GetChild(1).name == currentIngr.ToString())
-        {
-            lifeText.text = lifeFirstStadyCooking.ToString();
-            if (currentRecipeIngr < recipe.MassIngr.Length - 1)
-            {
-                currentRecipeIngr = currentRecipeIngr + 1;
-                allCounrRGB += ListIngredient.ingredients[currentIngr].GetRGBIngr();
-
-            }
-            else if (currentRecipeIngr == recipe.MassIngr.Length - 1)
-            {
-                firstStady = false;
-                secondStady = true;
-            }
-        }
-        else
-        {
-            lifeFirstStadyCooking--;
-            lifeText.text = lifeFirstStadyCooking.ToString();
-            Debug.Log("----");
-        }
-
 
     }
+
 
 
     //инициализация процесса готовки.
@@ -253,7 +177,7 @@ public class CookingProcess : MonoBehaviour
         gridSequence.SetActive(true);
         gridSequence.GetComponent<GeneratorIngrSeq>().Repeat();//метод повторения спавна ингредиентов
 
-
+        nextIngrView.gameObject.SetActive(true);
 
         lifeFirstStadyCooking = 3;
         lifeText.text = lifeFirstStadyCooking.ToString();
@@ -397,7 +321,7 @@ public class CookingProcess : MonoBehaviour
     //активация и инициализация трубок в зависимости от сложности рецепта 
     public void ActivateCookingToubsByHard()
     {
-        Debug.Log(recipeHard);
+        // Debug.Log(recipeHard);
         switch (recipeHard)
         {
             case 0:
@@ -422,7 +346,7 @@ public class CookingProcess : MonoBehaviour
     //деактивация трубок в зависимости от сложности рецепта 
     public void DeactivateCookingToubsByHard()
     {
-        Debug.Log(recipeHard);
+        //Debug.Log(recipeHard);
         switch (recipeHard)
         {
             case 0:
@@ -447,23 +371,23 @@ public class CookingProcess : MonoBehaviour
     //активация пойнтер зон для переключения между трубками в зависимости от сложности рецепта 
     public void ActivatePointerZonesByHard()
     {
-        Debug.Log(recipeHard);
+        // Debug.Log(recipeHard);
         switch (recipeHard)
         {
             case 0:
                 PointerZones.transform.GetChild(0).gameObject.SetActive(true);
-               // PointerZones.transform.GetChild(0).transform.GetChild(0).GetComponent<CookingToub>().IninToub();
+                // PointerZones.transform.GetChild(0).transform.GetChild(0).GetComponent<CookingToub>().IninToub();
                 break;
             case 1:
                 PointerZones.transform.GetChild(1).gameObject.SetActive(true);
-               // CookingToubs.transform.GetChild(1).transform.GetChild(0).GetComponent<CookingToub>().IninToub();
-               // CookingToubs.transform.GetChild(1).transform.GetChild(1).GetComponent<CookingToub>().IninToub();
+                // CookingToubs.transform.GetChild(1).transform.GetChild(0).GetComponent<CookingToub>().IninToub();
+                // CookingToubs.transform.GetChild(1).transform.GetChild(1).GetComponent<CookingToub>().IninToub();
                 break;
             case 2:
                 PointerZones.transform.GetChild(2).gameObject.SetActive(true);
-               // CookingToubs.transform.GetChild(2).transform.GetChild(0).GetComponent<CookingToub>().IninToub();
-               // CookingToubs.transform.GetChild(2).transform.GetChild(1).GetComponent<CookingToub>().IninToub();
-               // CookingToubs.transform.GetChild(2).transform.GetChild(2).GetComponent<CookingToub>().IninToub();
+                // CookingToubs.transform.GetChild(2).transform.GetChild(0).GetComponent<CookingToub>().IninToub();
+                // CookingToubs.transform.GetChild(2).transform.GetChild(1).GetComponent<CookingToub>().IninToub();
+                // CookingToubs.transform.GetChild(2).transform.GetChild(2).GetComponent<CookingToub>().IninToub();
                 break;
         }
 
@@ -472,7 +396,7 @@ public class CookingProcess : MonoBehaviour
     //деактивация пойнтер зон для переключения между трубками в зависимости от сложности рецепта 
     public void DeactivatePointerZonesByHard()
     {
-        Debug.Log(recipeHard);
+        // Debug.Log(recipeHard);
         switch (recipeHard)
         {
             case 0:

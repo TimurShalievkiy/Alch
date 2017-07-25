@@ -13,9 +13,10 @@ public class GetIngrFromSequense : MonoBehaviour {
         {
             try
             {
-                Destroy(collision.gameObject);
+               
                 CookingProcess.currentIngr = System.Convert.ToInt32(collision.transform.name);
                 g.GetComponent<CookingProcess>().AddIngredientToKattle();
+                Destroy(collision.gameObject);
             }
             catch
             {

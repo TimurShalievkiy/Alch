@@ -17,7 +17,7 @@ public class RecipesSelector : MonoBehaviour
             {             
                 CookingProcess.recipe = new Recipe(r.Id,r.Hard, r.MassIngr);
                 CookingProcess.recipeHard = r.Hard;
-                CookingProcess.currentRecipeIngr = r.MassIngr[0];
+               // CookingProcess.currentRecipeIngr = r.MassIngr[0];
                 CookingProcess.firstStady = true;
                 break;
             };
