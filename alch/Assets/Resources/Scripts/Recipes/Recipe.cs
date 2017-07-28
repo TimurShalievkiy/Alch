@@ -50,7 +50,7 @@ public class Recipe : MonoBehaviour {
     //проверка на соответсвие текущего ингредиента и 
     public bool EqualsIngr(int x)
     {
-        Debug.Log("currentIngr = " + currentIngr);
+       // Debug.Log("currentIngr = " + currentIngr);
         if (x == massIngr[currentIngr])
         {
             return true;

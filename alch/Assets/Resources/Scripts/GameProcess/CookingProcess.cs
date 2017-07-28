@@ -8,11 +8,13 @@ public class CookingProcess : MonoBehaviour
     public Camera camera;
 
     public GameObject gridSequence;
-    public GameObject ConteinerIngr;
+    //public GameObject ConteinerIngr;
     public GameObject nextIngrView;
+    public GameObject spauners;
 
     public GameObject CookingPanelControl;
     public GameObject StartPanelControl;
+    public GameObject uoDownButton;
 
 
     //обьект котел
@@ -95,6 +97,8 @@ public class CookingProcess : MonoBehaviour
         //вторая стадия
         if (secondStady)
         {
+            uoDownButton.gameObject.SetActive(true);
+            spauners.SetActive(false);
             nextIngrView.gameObject.SetActive(false);
             Kattle.GetComponent<Animator>().SetBool("kettleUp", true);
             Debug.Log("SecondStady");
@@ -143,11 +147,11 @@ public class CookingProcess : MonoBehaviour
             for (int i = 0; i < gridSequence.transform.childCount; i++)
                 Destroy(gridSequence.transform.GetChild(i).gameObject);
 
-
+        uoDownButton.gameObject.SetActive(false);
         DeactivateCookingToubsByHard();
         DeactivatePointerZonesByHard();
 
-
+        spauners.SetActive(false);
         gridSequence.SetActive(false);
         CookingPanelControl.SetActive(false);
         StartPanelControl.SetActive(true);
@@ -159,7 +163,7 @@ public class CookingProcess : MonoBehaviour
 
 
         gridSequence.GetComponent<GeneratorIngrSeq>().ResetSequensParametrs();
-
+       
     }
 
 
@@ -182,6 +186,8 @@ public class CookingProcess : MonoBehaviour
         lifeFirstStadyCooking = 3;
         lifeText.text = lifeFirstStadyCooking.ToString();
         lifeText.transform.parent.gameObject.SetActive(true);
+
+        spauners.SetActive(true);
     }
 
 

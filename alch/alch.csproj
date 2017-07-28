@@ -94,7 +94,10 @@
     <Compile Include="Assets\Resources\Scripts\GameProcess\CookingToub.cs" />
     <Compile Include="Assets\Resources\Scripts\GameProcess\DeleteZone.cs" />
     <Compile Include="Assets\Resources\Scripts\GameProcess\GetIngrFromSequense.cs" />
-    <Compile Include="Assets\Resources\Scripts\GameProcess\Interference\Spauner.cs" />
+    <Compile Include="Assets\Resources\Scripts\GameProcess\Interference\FirstStady\Portal\PortalSpauner.cs" />
+    <Compile Include="Assets\Resources\Scripts\GameProcess\Interference\FirstStady\Spauner\ListInterfSprites.cs" />
+    <Compile Include="Assets\Resources\Scripts\GameProcess\Interference\FirstStady\Spauner\Spauner.cs" />
+    <Compile Include="Assets\Resources\Scripts\GameProcess\Interference\FirstStady\Spauner\SpawnObjInterf.cs" />
     <Compile Include="Assets\Resources\Scripts\GameProcess\PauseButton.cs" />
     <Compile Include="Assets\Resources\Scripts\GameProcess\RGBButtons.cs" />
     <Compile Include="Assets\Resources\Scripts\GameProcess\RecipesSelector.cs" />
