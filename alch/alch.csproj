@@ -108,6 +108,9 @@
     <Compile Include="Assets\Resources\Scripts\GameProcess\TimeRotationTriger.cs" />
     <Compile Include="Assets\Resources\Scripts\Ingredients\Ingredient.cs" />
     <Compile Include="Assets\Resources\Scripts\Ingredients\ListIngredient.cs" />
+    <Compile Include="Assets\Resources\Scripts\Interface\Menu\MenuButton.cs" />
+    <Compile Include="Assets\Resources\Scripts\Interface\Menu\MenuScroller.cs" />
+    <Compile Include="Assets\Resources\Scripts\Interface\Menu\TrigerZoneMenuButton.cs" />
     <Compile Include="Assets\Resources\Scripts\Potion\ListPotins.cs" />
     <Compile Include="Assets\Resources\Scripts\Potion\Potion.cs" />
     <Compile Include="Assets\Resources\Scripts\Recipes\ListRecipes.cs" />
