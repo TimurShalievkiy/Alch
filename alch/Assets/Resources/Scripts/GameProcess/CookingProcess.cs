@@ -15,6 +15,7 @@ public class CookingProcess : MonoBehaviour
     public GameObject CookingPanelControl;
     public GameObject StartPanelControl;
     public GameObject uoDownButton;
+    public GameObject pauseButton;
 
 
     //обьект котел
@@ -28,9 +29,9 @@ public class CookingProcess : MonoBehaviour
 
 
 
-    public GameObject SliderR;
-    public GameObject SliderG;
-    public GameObject SliderB;
+    //public GameObject SliderR;
+    //public GameObject SliderG;
+    //public GameObject SliderB;
 
 
     //текущий рецепт
@@ -87,7 +88,7 @@ public class CookingProcess : MonoBehaviour
                 EndCooking();
 
             //если рецепт доступен и не достигнут конец рецепта
-           if (recipe.RecipeStatus && !recipe.EndOfRecipe)
+            if (recipe.RecipeStatus && !recipe.EndOfRecipe)
             {
                 //устанавливаем спрайт и имя панели отображения текущего ингредиента 
                 nextIngrView.transform.GetChild(1).GetComponent<Image>().sprite = recipe.GetCurrentSpriteIngr;
@@ -102,6 +103,7 @@ public class CookingProcess : MonoBehaviour
             nextIngrView.gameObject.SetActive(false);
             Kattle.GetComponent<Animator>().SetBool("kettleUp", true);
             Debug.Log("SecondStady");
+            pauseButton.transform.position = new Vector2(Screen.width - 120, Screen.height - 120);
             //InitAllSlider();
 
 
@@ -143,6 +145,7 @@ public class CookingProcess : MonoBehaviour
 
     public void EndCooking()
     {
+
         if (gridSequence.transform.childCount > 0)
             for (int i = 0; i < gridSequence.transform.childCount; i++)
                 Destroy(gridSequence.transform.GetChild(i).gameObject);
@@ -163,7 +166,7 @@ public class CookingProcess : MonoBehaviour
 
 
         gridSequence.GetComponent<GeneratorIngrSeq>().ResetSequensParametrs();
-        Spauner.DeleteAllFromList();
+
     }
 
 
@@ -188,140 +191,21 @@ public class CookingProcess : MonoBehaviour
         lifeText.transform.parent.gameObject.SetActive(true);
 
         spauners.SetActive(true);
+        Spauner.DeleteAllFromList();
+
+        pauseButton.transform.position = new Vector2(Screen.width - 120, 120 );
     }
 
 
-
-    public bool ChekGreenZoneAllSlider()
-    {
-        switch (recipeHard)
-        {
-            case 0:
-                return SliderR.GetComponent<CookingSlider>().RInGreenZone();
-                break;
-            case 1:
-                return SliderR.GetComponent<CookingSlider>().RInGreenZone() & SliderG.GetComponent<CookingSlider>().RInGreenZone();
-                break;
-            case 2:
-                return SliderR.GetComponent<CookingSlider>().RInGreenZone() & SliderG.GetComponent<CookingSlider>().RInGreenZone() & SliderB.GetComponent<CookingSlider>().RInGreenZone();
-                break;
-        }
-        return false;
-    }
-
-
-
-    public void ResetAllSlider()
-    {
-        switch (recipeHard)
-        {
-            case 0:
-                SliderR.GetComponent<CookingSlider>().ResetSlider();
-                break;
-            case 1:
-                SliderR.GetComponent<CookingSlider>().ResetSlider();
-                SliderG.GetComponent<CookingSlider>().ResetSlider();
-                break;
-            case 2:
-                SliderR.GetComponent<CookingSlider>().ResetSlider();
-                SliderG.GetComponent<CookingSlider>().ResetSlider();
-                SliderB.GetComponent<CookingSlider>().ResetSlider();
-                break;
-        }
-        nextIngrView.transform.GetChild(0).GetComponent<Image>().fillAmount = 0;
-    }
-
-
-
-    public void InitAllSlider()
-    {
-
-
-        //switch (recipeHard)
-        //{
-        //    case 0:
-        //        SliderR.GetComponent<CookingSlider>().pause = true;
-        //        break;
-        //    case 1:
-        //        SliderR.GetComponent<CookingSlider>().pause = true;
-        //        SliderG.GetComponent<CookingSlider>().pause = true;
-        //        break;
-        //    case 2:
-        //        SliderR.GetComponent<CookingSlider>().pause = true;
-        //        SliderG.GetComponent<CookingSlider>().pause = true;
-        //        SliderB.GetComponent<CookingSlider>().pause = true;
-        //        break;
-        //}
-    }
-
-    public void UpButtonCook(int x)
-    {
-        switch (x)
-        {
-            case 0:
-                SliderR.GetComponent<CookingSlider>().ChangeVariableVal(currentChangeVall);
-                break;
-            case 1:
-                SliderG.GetComponent<CookingSlider>().ChangeVariableVal(currentChangeVall);
-                break;
-            case 2:
-                SliderB.GetComponent<CookingSlider>().ChangeVariableVal(currentChangeVall);
-                break;
-        }
-    }
-    public void DownButtonCook(int x)
-    {
-        switch (x)
-        {
-            case 0:
-                SliderR.GetComponent<CookingSlider>().ChangeVariableVal(-currentChangeVall);
-                break;
-            case 1:
-                SliderG.GetComponent<CookingSlider>().ChangeVariableVal(-currentChangeVall);
-                break;
-            case 2:
-                SliderB.GetComponent<CookingSlider>().ChangeVariableVal(-currentChangeVall);
-                break;
-        }
-    }
-
-    //alternativ cooking
-    //------------------------------------------------
-    public void UpButtonCook()
-    {
-        switch (currenSlider)
-        {
-            case 0:
-                SliderR.GetComponent<CookingSlider>().ChangeVariableVal(currentChangeVall);
-                break;
-            case 1:
-                SliderG.GetComponent<CookingSlider>().ChangeVariableVal(currentChangeVall);
-                break;
-            case 2:
-                SliderB.GetComponent<CookingSlider>().ChangeVariableVal(currentChangeVall);
-                break;
-        }
-    }
-    public void DownButtonCook()
-    {
-        switch (currenSlider)
-        {
-            case 0:
-                SliderR.GetComponent<CookingSlider>().ChangeVariableVal(-currentChangeVall);
-                break;
-            case 1:
-                SliderG.GetComponent<CookingSlider>().ChangeVariableVal(-currentChangeVall);
-                break;
-            case 2:
-                SliderB.GetComponent<CookingSlider>().ChangeVariableVal(-currentChangeVall);
-                break;
-        }
-    }
 
     public void SetCurrentSliderVal(int x)
     {
+        
         currenSlider = x;
+        Debug.Log(currenSlider + " SetCurrentSliderVal");
     }
+
+
 
 
     //активация и инициализация трубок в зависимости от сложности рецепта 
@@ -373,7 +257,7 @@ public class CookingProcess : MonoBehaviour
         }
 
     }
-    //-------------------------------------------------
+
     //активация пойнтер зон для переключения между трубками в зависимости от сложности рецепта 
     public void ActivatePointerZonesByHard()
     {
@@ -382,18 +266,13 @@ public class CookingProcess : MonoBehaviour
         {
             case 0:
                 PointerZones.transform.GetChild(0).gameObject.SetActive(true);
-                // PointerZones.transform.GetChild(0).transform.GetChild(0).GetComponent<CookingToub>().IninToub();
+                currenSlider = 0;
                 break;
             case 1:
                 PointerZones.transform.GetChild(1).gameObject.SetActive(true);
-                // CookingToubs.transform.GetChild(1).transform.GetChild(0).GetComponent<CookingToub>().IninToub();
-                // CookingToubs.transform.GetChild(1).transform.GetChild(1).GetComponent<CookingToub>().IninToub();
                 break;
             case 2:
                 PointerZones.transform.GetChild(2).gameObject.SetActive(true);
-                // CookingToubs.transform.GetChild(2).transform.GetChild(0).GetComponent<CookingToub>().IninToub();
-                // CookingToubs.transform.GetChild(2).transform.GetChild(1).GetComponent<CookingToub>().IninToub();
-                // CookingToubs.transform.GetChild(2).transform.GetChild(2).GetComponent<CookingToub>().IninToub();
                 break;
         }
 
@@ -407,18 +286,105 @@ public class CookingProcess : MonoBehaviour
         {
             case 0:
                 PointerZones.transform.GetChild(0).gameObject.SetActive(false);
-                // PointerZones.transform.GetChild(0).transform.GetChild(0).GetComponent<CookingToub>().IninToub();
+                currenSlider = -1;
                 break;
             case 1:
                 PointerZones.transform.GetChild(1).gameObject.SetActive(false);
-                // CookingToubs.transform.GetChild(1).transform.GetChild(0).GetComponent<CookingToub>().IninToub();
-                // CookingToubs.transform.GetChild(1).transform.GetChild(1).GetComponent<CookingToub>().IninToub();
                 break;
             case 2:
                 PointerZones.transform.GetChild(2).gameObject.SetActive(false);
-                // CookingToubs.transform.GetChild(2).transform.GetChild(0).GetComponent<CookingToub>().IninToub();
-                // CookingToubs.transform.GetChild(2).transform.GetChild(1).GetComponent<CookingToub>().IninToub();
-                // CookingToubs.transform.GetChild(2).transform.GetChild(2).GetComponent<CookingToub>().IninToub();
+                break;
+        }
+
+    }
+    //-----------------------------------------------------------------------------------------------------------
+    public void UpButtonDown()
+    {
+       
+        switch (recipeHard)
+        {
+            case 0:
+                Debug.Log("hard 0");
+                switch (currenSlider)
+                {
+                    case 0:
+                        CookingToubs.transform.GetChild(0).transform.GetChild(0).transform.GetComponent<CookingToub>().ChangeCuurenValue(currentChangeVall);
+                        Debug.Log("hard 1 slider 0");
+                        break;
+                }
+                break;
+            case 1:
+                Debug.Log("hard 1");
+                switch (currenSlider)
+                {
+                    case 0:
+                        Debug.Log("slider 0");
+                        CookingToubs.transform.GetChild(1).transform.GetChild(0).transform.GetComponent<CookingToub>().ChangeCuurenValue(currentChangeVall);
+                        break;
+                    case 1:
+                        Debug.Log("slider 1");
+                        CookingToubs.transform.GetChild(1).transform.GetChild(1).transform.GetComponent<CookingToub>().ChangeCuurenValue(currentChangeVall);
+                        break;
+                }
+                break;
+            case 2:
+                Debug.Log("hard 2");
+                switch (currenSlider)
+                {
+                    case 0:
+                        Debug.Log("slider 0");
+                        CookingToubs.transform.GetChild(2).transform.GetChild(0).transform.GetComponent<CookingToub>().ChangeCuurenValue(currentChangeVall);
+                        break;
+                    case 1:
+                        Debug.Log("slider 1");
+                        CookingToubs.transform.GetChild(2).transform.GetChild(1).transform.GetComponent<CookingToub>().ChangeCuurenValue(currentChangeVall);
+                        break;
+                    case 2:
+                        Debug.Log("slider 2");
+                        CookingToubs.transform.GetChild(2).transform.GetChild(2).transform.GetComponent<CookingToub>().ChangeCuurenValue(currentChangeVall);
+                        break;
+                }
+                break;
+        }
+
+    }
+    //-----------------------------------------------------------------------------------------------------------
+    public void DownButtonDown()
+    {
+        switch (recipeHard)
+        {
+            case 0:
+                switch (currenSlider)
+                {
+                    case 0:
+                        CookingToubs.transform.GetChild(0).transform.GetChild(0).transform.GetComponent<CookingToub>().ChangeCuurenValue(-currentChangeVall);
+                        break;
+                }
+                break;
+            case 1:
+                switch (currenSlider)
+                {
+                    case 0:
+                        CookingToubs.transform.GetChild(1).transform.GetChild(0).transform.GetComponent<CookingToub>().ChangeCuurenValue(-currentChangeVall);
+                        break;
+                    case 1:
+                        CookingToubs.transform.GetChild(1).transform.GetChild(1).transform.GetComponent<CookingToub>().ChangeCuurenValue(-currentChangeVall);
+                        break;
+                }
+                break;
+            case 2:
+                switch (currenSlider)
+                {
+                    case 0:
+                        CookingToubs.transform.GetChild(2).transform.GetChild(0).transform.GetComponent<CookingToub>().ChangeCuurenValue(-currentChangeVall);
+                        break;
+                    case 1:
+                        CookingToubs.transform.GetChild(2).transform.GetChild(1).transform.GetComponent<CookingToub>().ChangeCuurenValue(-currentChangeVall);
+                        break;
+                    case 2:
+                        CookingToubs.transform.GetChild(2).transform.GetChild(2).transform.GetComponent<CookingToub>().ChangeCuurenValue(-currentChangeVall);
+                        break;
+                }
                 break;
         }
 

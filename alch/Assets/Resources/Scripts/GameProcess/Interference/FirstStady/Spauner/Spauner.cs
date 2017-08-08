@@ -24,7 +24,7 @@ public class Spauner : MonoBehaviour
 
     public float heightScale;
     public float pVal;
-    public  float movementSpeed;
+    public float movementSpeed;
 
     float xVal = 0;
     float yVal = 0;
@@ -36,14 +36,14 @@ public class Spauner : MonoBehaviour
         ListSpawnObj = new List<GameObject>();
         pVal = 2;
     }
-   
+
     void FixedUpdate()
     {
         //если работает
         if (working)
         {
-          //  if (ListSpawnObj.Count > 0)
-              //  MoveSpawnObject();
+            //  if (ListSpawnObj.Count > 0)
+            //  MoveSpawnObject();
             //если время задержки закончилось
             if (currentTimeDelay <= 0)
             {
@@ -79,10 +79,10 @@ public class Spauner : MonoBehaviour
 
             yVal = way * pVal * heightScale * xVal;
 
-            
-            item.transform.localPosition = new Vector3(xVal, Mathf.Sqrt(yVal),0 );
+
+            item.transform.localPosition = new Vector3(xVal, Mathf.Sqrt(yVal), 0);
         }
-        
+
     }
     public void SpawnObjByParabola()
     {
@@ -92,7 +92,7 @@ public class Spauner : MonoBehaviour
             float x = Screen.width / 2 + Screen.width * way;
             float y = heightScale * way * pVal * x;
             //создание нового обькта 
-            
+
             GameObject g = Instantiate(spawnObj);
             g.GetComponent<SpawnObjInterf>().InitObj(x, y, way, pVal, heightScale, movementSpeed);
             g.transform.localPosition = new Vector2(x, y);
@@ -171,11 +171,14 @@ public class Spauner : MonoBehaviour
     }
     public static void DeleteAllFromList()
     {
-
-        foreach (GameObject item in ListSpawnObj)
+        if (ListSpawnObj != null)
         {
-            ListSpawnObj.Remove(item);
-            Destroy(item);
+            foreach (GameObject item in ListSpawnObj)
+            {
+                // ListSpawnObj.Remove(item);
+                Destroy(item);
+            }
+            ListSpawnObj = new List<GameObject>();
         }
     }
 }

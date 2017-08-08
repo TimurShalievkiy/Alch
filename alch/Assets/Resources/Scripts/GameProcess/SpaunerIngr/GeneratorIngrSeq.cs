@@ -30,9 +30,9 @@ public class GeneratorIngrSeq : MonoBehaviour
 
         //Вставка обьекта ингредиента
         GameObject g = Instantiate(conteiner, transform.position, Quaternion.identity);
-
+        g.transform.GetComponent<RectTransform>().sizeDelta = new Vector2(Screen.height / 6, Screen.height / 6);
         //шанс создания ложного ингредиента
-        if(Random.Range(0, 100) < 10)
+        if (Random.Range(0, 100) < 10)
             falseIngr = true;
 
         //если ложный ингредиент

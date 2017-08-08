@@ -17,6 +17,9 @@ public class CookingToub : MonoBehaviour {
     public float currVal = 1;
 
     //переменная изменяющая текущее значение трубы
+    public float changVal = 0.1f;
+
+    //переменная изменяющая текущее значение трубы
     public float currChangVal = 0.1f;
 
     //максимальное значение заполняемости трубы
@@ -106,6 +109,7 @@ public class CookingToub : MonoBehaviour {
 
     public void RandVal()
     {
+        currChangVal = changVal;
         //задание времени которое будет сохранятся данное направление изменения значения трубки
         timeRandDirection = Random.Range(5, 7);
 
@@ -121,6 +125,7 @@ public class CookingToub : MonoBehaviour {
         //если текущее значение трубы меньше максимального значения и больше нуля 
         if (currVal + x < maxValToube && currVal + x > 0)
         {
+            
             //добавление переменной к текущему значению
             currVal += x;
 
@@ -128,5 +133,13 @@ public class CookingToub : MonoBehaviour {
             fillArea.transform.localPosition = new Vector2(0f, -(weightFillZone - (currVal * ratioMaxAndCurVal)));
         }
     }
+
+    public void ChangeCuurenValue(float x)
+    {
+        //Debug.Log(currVal + " " + x);
+        currChangVal += x;
+    }
+
+
 
 }
