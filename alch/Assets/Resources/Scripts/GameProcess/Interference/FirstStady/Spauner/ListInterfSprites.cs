@@ -17,8 +17,8 @@ public class ListInterfSprites : MonoBehaviour {
 	void Start () {
         listInterfItem = new List<InterferensItem>()
         {
-            new InterferensItem{ id = 0,  helth =1 , spr = "Images/Interference/1"},
-             new InterferensItem{ id = 1,  helth =2 , spr = "Images/Interference/2"},
+            new InterferensItem{ id = 0,  helth =1 , spr = "Images/Interference/2"},
+             new InterferensItem{ id = 1,  helth =2 , spr = "Images/Interference/1"},
               new InterferensItem{ id = 2,  helth =3 , spr = "Images/Interference/3"}
         };
     }

@@ -163,7 +163,7 @@ public class CookingProcess : MonoBehaviour
 
 
         gridSequence.GetComponent<GeneratorIngrSeq>().ResetSequensParametrs();
-       
+        Spauner.DeleteAllFromList();
     }
 
 

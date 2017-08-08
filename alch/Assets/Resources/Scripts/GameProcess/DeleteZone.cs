@@ -6,8 +6,12 @@ public class DeleteZone : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D coll)
     {
-       // Debug.Log("enter");
-        Destroy(coll.gameObject);
+        if (coll.transform.GetComponent<SpawnObjInterf>())
+        {
+            Spauner.DeleteFromList(coll.gameObject);
+        }
+        else
+            Destroy(coll.gameObject);
 
     }
 }
