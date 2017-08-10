@@ -17,6 +17,8 @@ public class CookingProcess : MonoBehaviour
     public GameObject uoDownButton;
     public GameObject pauseButton;
 
+    public GameObject pogressSecondStage;
+
 
     //обьект котел
     public GameObject Kattle;
@@ -53,13 +55,9 @@ public class CookingProcess : MonoBehaviour
     public static int G;
     public static int B;
 
-    public int allCounrRGB;
+    public float ValueProgresSecondStage;
 
-    public float progressIngr;
-    //float timeByRefine = 30f;
-
-    // public static int currentRecipeIngr = -1;
-    // public  int currentPosRecipeIngr = -1;
+    public float currentProgresSecondStage;
 
 
     public float currentChangeVall = 0.02f; //временная переменная для изменениея значения по клику 
@@ -98,24 +96,44 @@ public class CookingProcess : MonoBehaviour
         //вторая стадия
         if (secondStady)
         {
-            uoDownButton.gameObject.SetActive(true);
-            spauners.SetActive(false);
-            nextIngrView.gameObject.SetActive(false);
-            Kattle.GetComponent<Animator>().SetBool("kettleUp", true);
-            Debug.Log("SecondStady");
-            pauseButton.transform.position = new Vector2(Screen.width - 120, Screen.height - 120);
-            //InitAllSlider();
+            if (GetBoolValueGreenZone())
+            {
+               // Debug.Log((ValueProgresSecondStage*360) + "  =   " + currentProgresSecondStage + " - " + pogressSecondStage.GetComponent<Image>().fillAmount);
+                currentProgresSecondStage += Time.deltaTime;
+                pogressSecondStage.GetComponent<Image>().fillAmount = currentProgresSecondStage / ValueProgresSecondStage;
+                pogressSecondStage.GetComponent<Image>().color = Color.green;
 
-
-            ActivatePointerZonesByHard();
-            ActivateCookingToubsByHard();
-            secondStady = false;
-            gridSequence.SetActive(false);
-            lifeText.transform.parent.gameObject.SetActive(false);
+                if (pogressSecondStage.GetComponent<Image>().fillAmount == 1)
+                    EndCooking();
+            }
+            else
+            {
+                pogressSecondStage.GetComponent<Image>().fillAmount = currentProgresSecondStage / ValueProgresSecondStage;
+                pogressSecondStage.GetComponent<Image>().color = Color.red;
+            }
         }
 
     }
 
+    void InitSecondStage()
+    {
+        ValueProgresSecondStage = recipe.GetValueAllIngredient;
+        currentProgresSecondStage = 0;
+        uoDownButton.gameObject.SetActive(true);
+        spauners.SetActive(false);
+        nextIngrView.gameObject.SetActive(false);
+        Kattle.GetComponent<Animator>().SetBool("kettleUp", true);
+        Debug.Log("SecondStady");
+        pauseButton.transform.position = new Vector2(Screen.width - 120, Screen.height - 120);
+
+
+        ActivatePointerZonesByHard();
+        ActivateCookingToubsByHard();
+   
+        gridSequence.SetActive(false);
+        lifeText.transform.parent.gameObject.SetActive(false);
+        pogressSecondStage.SetActive(true);
+    }
     //добавление ингредиента для обработки 
     public void AddIngredientToKattle()
     {
@@ -130,6 +148,7 @@ public class CookingProcess : MonoBehaviour
             {
                 firstStady = false;
                 secondStady = true;
+                InitSecondStage();
             }
         }
         //иначе уменьшаем показатель жизней
@@ -162,9 +181,9 @@ public class CookingProcess : MonoBehaviour
         currentIngr = -1;
         firstStady = false;
         recipe.RecipeStatus = false;
-        allCounrRGB = 0;
-
-
+        ValueProgresSecondStage = 0;
+        secondStady = false;
+        pogressSecondStage.SetActive(false);
         gridSequence.GetComponent<GeneratorIngrSeq>().ResetSequensParametrs();
 
     }
@@ -258,6 +277,29 @@ public class CookingProcess : MonoBehaviour
 
     }
 
+    //деактивация трубок в зависимости от сложности рецепта 
+    public bool GetBoolValueGreenZone()
+    {
+        //Debug.Log(recipeHard);
+        switch (recipeHard)
+        {
+            case 0:     
+                return CookingToubs.transform.GetChild(0).transform.GetChild(0).GetComponent<CookingToub>().InGreenZone;
+                break;
+            case 1:
+                return (CookingToubs.transform.GetChild(1).transform.GetChild(0).GetComponent<CookingToub>().InGreenZone &&
+                        CookingToubs.transform.GetChild(1).transform.GetChild(1).GetComponent<CookingToub>().InGreenZone);
+                break;
+            case 2:
+                return (CookingToubs.transform.GetChild(2).transform.GetChild(0).GetComponent<CookingToub>().InGreenZone &&
+                        CookingToubs.transform.GetChild(2).transform.GetChild(1).GetComponent<CookingToub>().InGreenZone&&
+                        CookingToubs.transform.GetChild(2).transform.GetChild(2).GetComponent<CookingToub>().InGreenZone);
+                break;
+        }
+        return false;
+
+    }
+
     //активация пойнтер зон для переключения между трубками в зависимости от сложности рецепта 
     public void ActivatePointerZonesByHard()
     {
@@ -304,43 +346,34 @@ public class CookingProcess : MonoBehaviour
         switch (recipeHard)
         {
             case 0:
-                Debug.Log("hard 0");
                 switch (currenSlider)
                 {
                     case 0:
                         CookingToubs.transform.GetChild(0).transform.GetChild(0).transform.GetComponent<CookingToub>().ChangeCuurenValue(currentChangeVall);
-                        Debug.Log("hard 1 slider 0");
                         break;
                 }
                 break;
             case 1:
-                Debug.Log("hard 1");
                 switch (currenSlider)
                 {
                     case 0:
-                        Debug.Log("slider 0");
                         CookingToubs.transform.GetChild(1).transform.GetChild(0).transform.GetComponent<CookingToub>().ChangeCuurenValue(currentChangeVall);
                         break;
                     case 1:
-                        Debug.Log("slider 1");
                         CookingToubs.transform.GetChild(1).transform.GetChild(1).transform.GetComponent<CookingToub>().ChangeCuurenValue(currentChangeVall);
                         break;
                 }
                 break;
             case 2:
-                Debug.Log("hard 2");
                 switch (currenSlider)
                 {
                     case 0:
-                        Debug.Log("slider 0");
                         CookingToubs.transform.GetChild(2).transform.GetChild(0).transform.GetComponent<CookingToub>().ChangeCuurenValue(currentChangeVall);
                         break;
                     case 1:
-                        Debug.Log("slider 1");
                         CookingToubs.transform.GetChild(2).transform.GetChild(1).transform.GetComponent<CookingToub>().ChangeCuurenValue(currentChangeVall);
                         break;
                     case 2:
-                        Debug.Log("slider 2");
                         CookingToubs.transform.GetChild(2).transform.GetChild(2).transform.GetComponent<CookingToub>().ChangeCuurenValue(currentChangeVall);
                         break;
                 }

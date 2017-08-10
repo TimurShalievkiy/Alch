@@ -14,8 +14,9 @@ public class ListRecipes : MonoBehaviour {
             new Recipe(3,2,new int[]{ 4,3,4,2,4,3,4})
         };
 
-        //Debug.Log("Recipes done!");
+       
     }
+
 
 
 }

@@ -9,18 +9,14 @@ public class Ingredient : MonoBehaviour {
     string nameIngr;
     string spritePass;
 
-    int R;
-    int G;
-    int B;
+    float valueIngr;
 
-    public Ingredient(int id, string nameIngr, string spass, int R, int G, int B)
+    public Ingredient(int id, string nameIngr, string spass, float valueIngr)
     {
         this.id = id;
         this.nameIngr = nameIngr;
         this.spritePass = spass;
-        this.R = R;
-        this.G = G;
-        this.B = B;
+        this.valueIngr = valueIngr;
     }
 
     public int Id{ get{return id;} }
@@ -33,14 +29,8 @@ public class Ingredient : MonoBehaviour {
         }
 
     }
-    public void GetRGBIngr(out int R, out int G, out int B)
+    public float GetValueIngr
     {
-        R = this.R;
-        G = this.G;
-        B = this.B;
-    }
-    public int GetRGBIngr()
-    {   
-       return this.R + this.G+ this.B;
+        get { return valueIngr; }
     }
 }

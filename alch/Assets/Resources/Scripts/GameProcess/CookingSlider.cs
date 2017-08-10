@@ -41,13 +41,6 @@ public class CookingSlider : MonoBehaviour
 
             timeChangeStage -= Time.deltaTime;
 
-
-
-            //  if (upDown && /*curPos < minValSlider &&*/ (curPos + changeValSlider)< maxValSlider)
-            //       curPos -= changeValSlider;
-            //   else if(!upDown &&/* curPos > maxValSlider*/(curPos - changeValSlider) > minValSlider)
-            //       curPos += changeValSlider;
-
             if ((curPos + changeValSlider) < maxValSlider && (curPos + changeValSlider) > minValSlider)
             {
                 if(upDown)

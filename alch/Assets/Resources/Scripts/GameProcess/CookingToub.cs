@@ -26,10 +26,10 @@ public class CookingToub : MonoBehaviour {
     float maxValToube;
 
     //минимальная высота зеленой зоны
-    float minWeightGreenZone;
+    public float minWeightGreenZone;
 
     //максимальная высота зеленой зоны
-    float maxWeightGreenZone;
+    public float maxWeightGreenZone;
 
     //соотношение длины заполняемой зоны к максимальному значению трубы
     float ratioMaxAndCurVal = 0;
@@ -74,6 +74,14 @@ public class CookingToub : MonoBehaviour {
         }
     }
 
+    public bool InGreenZone
+    {
+        get {
+            if (currVal >= minWeightGreenZone && currVal <= maxWeightGreenZone)
+                return true;
+            return false;
+        }
+    }
     //инициализация трубы для работы 
     public void IninToub()
     {
@@ -94,9 +102,14 @@ public class CookingToub : MonoBehaviour {
         //помещение заполняющей плоскости в стартовую позицию
         fillArea.transform.localPosition = new Vector2(0f, -weightFillZone);
 
+       //минимальная высота зеленой зоны
+        minWeightGreenZone= maxValToube / 4;
 
-        //включение трубки в работу 
-        toubWork = true;
+    //максимальная высота зеленой зоны
+        maxWeightGreenZone = maxValToube - minWeightGreenZone;
+
+    //включение трубки в работу 
+    toubWork = true;
 
     }
 

@@ -11,11 +11,11 @@ public class ListIngredient : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         ingredients = new List<Ingredient>() {
-            new Ingredient(0,"salt","Images/Ingr/salt",2,2,2),
-            new Ingredient(1, "lavanda", "Images/Ingr/lavanda",2,2,2),
-            new Ingredient(2, "gold","Images/Ingr/gold",4,3,2),
-            new Ingredient(3, "root","Images/Ingr/root",2,2,2),
-            new Ingredient(4, "silver", "Images/Ingr/silver",2,2,3)
+            new Ingredient(0,"salt","Images/Ingr/salt",5),
+            new Ingredient(1, "lavanda", "Images/Ingr/lavanda",6),
+            new Ingredient(2, "gold","Images/Ingr/gold",7),
+            new Ingredient(3, "root","Images/Ingr/root",8),
+            new Ingredient(4, "silver", "Images/Ingr/silver",9)
         };
        // Debug.Log("Ingredients done!");
 	}

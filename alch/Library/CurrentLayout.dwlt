@@ -42,7 +42,7 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: 
   m_RootView: {fileID: 9}
-  m_MinSize: {x: 950, y: 521}
+  m_MinSize: {x: 950, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &3
 MonoBehaviour:
@@ -137,10 +137,10 @@ MonoBehaviour:
     y: 0
     width: 811
     height: 635
-  m_MinSize: {x: 202, y: 321}
-  m_MaxSize: {x: 4002, y: 8021}
+  m_MinSize: {x: 202, y: 342}
+  m_MaxSize: {x: 4002, y: 8042}
   vertical: 1
-  controlID: 71
+  controlID: 13
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -186,8 +186,8 @@ MonoBehaviour:
     y: 0
     width: 263
     height: 635
-  m_MinSize: {x: 234, y: 471}
-  m_MaxSize: {x: 10004, y: 14021}
+  m_MinSize: {x: 234, y: 492}
+  m_MaxSize: {x: 10004, y: 14042}
   vertical: 1
   controlID: 106
 --- !u!114 &9
@@ -274,8 +274,8 @@ MonoBehaviour:
     y: 30
     width: 1366
     height: 635
-  m_MinSize: {x: 711, y: 471}
-  m_MaxSize: {x: 18006, y: 14021}
+  m_MinSize: {x: 713, y: 492}
+  m_MaxSize: {x: 18008, y: 14042}
   vertical: 0
   controlID: 104
 --- !u!114 &13
@@ -298,8 +298,8 @@ MonoBehaviour:
     y: 0
     width: 1074
     height: 635
-  m_MinSize: {x: 436, y: 471}
-  m_MaxSize: {x: 14006, y: 14021}
+  m_MinSize: {x: 436, y: 492}
+  m_MaxSize: {x: 14006, y: 14042}
   vertical: 0
   controlID: 105
 --- !u!114 &14
@@ -373,8 +373,8 @@ MonoBehaviour:
     y: 0
     width: 292
     height: 635
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 277, y: 71}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 25}
   m_Panes:
   - {fileID: 25}
@@ -489,9 +489,9 @@ MonoBehaviour:
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 879.4221, y: 555.6793, z: 0}
+    m_Target: {x: 763.89667, y: 467.7763, z: 0}
     speed: 2
-    m_Value: {x: 879.4221, y: 555.6793, z: 0}
+    m_Value: {x: 763.89667, y: 467.7763, z: 0}
   m_RenderMode: 0
   m_ValidateTrueMetals: 0
   m_SceneViewState:
@@ -518,9 +518,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 1803.1447
+    m_Target: 1441.9978
     speed: 2
-    m_Value: 1803.1447
+    m_Value: 1441.9978
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -660,9 +660,9 @@ MonoBehaviour:
     height: 336
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 38010000
+    m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: c415fdffa016fdff7217fdffba5bfdff865cfdff585dfdff56d2fdff1ed3fdfff0d3fdffca31ffff9232ffff6433ffffdcfbffff000000003e260000482600007a260000ba26000006270000ba270000f6280000402900006c2900007e290000c2290000d22900005e2a00007e7a0000887a0000f47a0000067b0000287b0000ca7b00003e7c0000467d00008e7d00009e7d00009e7e0000ce7e000022a6000098a60000cca6000034a700004aa80000eaa800002aa90000bacd000030ce000082d00000
+    m_ExpandedIDs: 34adfeff00aefeffd2aefeffdcfbffff000000003e260000a6260000d026000064270000bc270000d8270000a6280000d22800002a290000302a00003e2a0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -750,18 +750,18 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets/Resources/Scripts/GameProcess
+    - Assets/Resources/Images/Cooking/CookingToube
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Resources/Scripts/GameProcess
+  - Assets/Resources/Images/Cooking/CookingToube
   m_LastFoldersGridSize: 16
   m_LastProjectPath: D:\UnityWork\Projects\Alch\Alch\alch
   m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 127}
-    m_SelectedIDs: 68250000
-    m_LastClickedID: 9576
+    scrollPos: {x: 0, y: 0}
+    m_SelectedIDs: 90250000
+    m_LastClickedID: 9616
     m_ExpandedIDs: 00000000d22400002c250000362500005025000056250000682500009c250000a2250000b2250000ba25000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -818,21 +818,21 @@ MonoBehaviour:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 1
-    m_ExpandedInstanceIDs: c623000056e4ffffde240000ec240000042500004425000000000000
+    m_ExpandedInstanceIDs: c623000056e4ffffde240000ec24000004250000442500000000000040250000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: Interface
-      m_OriginalName: Interface
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 9634
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 7}
     m_CreateAssetUtility:

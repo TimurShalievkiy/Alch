@@ -111,4 +111,17 @@ public class Recipe : MonoBehaviour {
             else return true;
         }
     }
+    //значение для обработки во второй стадии 
+    public float GetValueAllIngredient
+    {
+        get
+        {
+            float ret = 0;
+            for (int i = 0; i < massIngr.Length; i++)
+            {
+               ret+= ListIngredient.ingredients[massIngr[i]].GetValueIngr;
+            }
+            return ret;
+        }
+    }
 }
