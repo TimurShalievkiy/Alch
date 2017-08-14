@@ -20,14 +20,16 @@ public class MenuScroller : EventTrigger
     {
         //если инерция включена
         if (reiteration > 0)
-        {            
+        {
             //смещаем элементы меню
-            if(way)
-            for (int i = 0; i < this.transform.GetChild(0).transform.childCount; i++)
-                this.transform.GetChild(0).transform.GetChild(i).transform.position = new Vector2(this.transform.GetChild(0).transform.GetChild(i).transform.position.x + Time.deltaTime *(1000 ) , this.transform.GetChild(0).transform.GetChild(1).transform.position.y);
+            if (way)
+                for (int i = 0; i < this.transform.GetChild(0).transform.childCount; i++)
+                {
+                        this.transform.GetChild(0).transform.GetChild(i).transform.position = new Vector2(this.transform.GetChild(0).transform.GetChild(i).transform.position.x + Time.deltaTime * (1000), this.transform.GetChild(0).transform.GetChild(1).transform.position.y);
+                }
             else
                 for (int i = 0; i < this.transform.GetChild(0).transform.childCount; i++)
-                    this.transform.GetChild(0).transform.GetChild(i).transform.position = new Vector2(this.transform.GetChild(0).transform.GetChild(i).transform.position.x - Time.deltaTime * (1000) , this.transform.GetChild(0).transform.GetChild(1).transform.position.y);
+                        this.transform.GetChild(0).transform.GetChild(i).transform.position = new Vector2(this.transform.GetChild(0).transform.GetChild(i).transform.position.x - Time.deltaTime * (1000), this.transform.GetChild(0).transform.GetChild(1).transform.position.y);
         }
     }
 

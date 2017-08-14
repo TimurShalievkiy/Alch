@@ -1,6 +1,6 @@
 ﻿<Properties StartupItem="alch.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Resources\Scripts\GameProcess\CookingToub.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\ItemsData\Items.json">
     <Files>
       <File FileName="Assets\Resources\Scripts\GameProcess\SpaunerIngr\GeneratorIngrSeq.cs" Line="1" Column="1" />
       <File FileName="Assets\Resources\Scripts\GameProcess\CookingProcess.cs" Line="1" Column="1" />
@@ -10,6 +10,8 @@
       <File FileName="Assets\Resources\Scripts\Interface\Menu\MenuScroller.cs" Line="1" Column="1" />
       <File FileName="Assets\Resources\Scripts\Interface\Menu\TrigerZoneMenuButton.cs" Line="1" Column="1" />
       <File FileName="Assets\Resources\Scripts\GameProcess\Interference\FirstStady\Spauner\Spauner.cs" Line="1" Column="1" />
+      <File FileName="Assets\Resources\Scripts\Interface\Menu\MenuButton.cs" Line="1" Column="1" />
+      <File FileName="Assets\ItemsData\Items.json" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
