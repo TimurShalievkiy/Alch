@@ -19,6 +19,8 @@ public class CookingProcess : MonoBehaviour
 
     public GameObject pogressSecondStage;
 
+    public GameObject SpaunerIngredient;
+
 
     //обьект котел
     public GameObject Kattle;
@@ -117,6 +119,8 @@ public class CookingProcess : MonoBehaviour
 
     void InitSecondStage()
     {
+        SpaunerIngredient.SetActive(false);
+
         ValueProgresSecondStage = recipe.GetValueAllIngredient;
         currentProgresSecondStage = 0;
         uoDownButton.gameObject.SetActive(true);
@@ -185,6 +189,7 @@ public class CookingProcess : MonoBehaviour
         secondStady = false;
         pogressSecondStage.SetActive(false);
         gridSequence.GetComponent<GeneratorIngrSeq>().ResetSequensParametrs();
+        SpaunerIngredient.SetActive(false);
 
     }
 
@@ -193,6 +198,8 @@ public class CookingProcess : MonoBehaviour
     //инициализация процесса готовки.
     public void LoadIngrInSequence()
     {
+        SpaunerIngredient.SetActive(true);
+
         Kattle.GetComponent<Animator>().SetBool("kettleUp", false);
         //удаление дочерних єлементов из очереди.
         if (gridSequence.transform.childCount > 0)

@@ -146,17 +146,17 @@ public class Spauner : MonoBehaviour
 
         int x = Random.Range(0, 100);
 
-        if (x < 50)
+        if (x < 33)
         {
             g.GetComponent<SpawnObjInterf>().helth = ListInterfSprites.listInterfItem[0].helth;
             g.GetComponent<Image>().sprite = Resources.Load<Sprite>(ListInterfSprites.listInterfItem[0].spr);
         }
-        else if (x >= 50 && x < 80)
+        else if (x >= 33 && x < 66)
         {
             g.GetComponent<SpawnObjInterf>().helth = ListInterfSprites.listInterfItem[1].helth;
             g.GetComponent<Image>().sprite = Resources.Load<Sprite>(ListInterfSprites.listInterfItem[1].spr);
         }
-        else if (x >= 80 && x < 100)
+        else if (x >= 66 && x < 100)
         {
             g.GetComponent<SpawnObjInterf>().helth = ListInterfSprites.listInterfItem[2].helth;
             g.GetComponent<Image>().sprite = Resources.Load<Sprite>(ListInterfSprites.listInterfItem[2].spr);

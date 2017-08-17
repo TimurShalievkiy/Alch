@@ -16,11 +16,14 @@ public class Recipe : MonoBehaviour {
     //статус рецепта доступен или нет
     bool recipeStatus;
 
-    public Recipe(int id, int hard, int[] massIngr)
+    public string spritePas;
+
+    public Recipe(int id, int hard, string spritePas, int[] massIngr)
     {
         this.id = id;
         this.massIngr = massIngr;
         this.hard = hard;
+        this.spritePas = spritePas;
         currentIngr = 0;
         recipeStatus = true;
 
