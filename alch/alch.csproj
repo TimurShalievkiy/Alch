@@ -120,6 +120,8 @@
     <Compile Include="Assets\Resources\Scripts\Potion\Potion.cs" />
     <Compile Include="Assets\Resources\Scripts\Recipes\ListRecipes.cs" />
     <Compile Include="Assets\Resources\Scripts\Recipes\Recipe.cs" />
+    <Compile Include="Assets\Resources\Scripts\Research\ListPotionResearch.cs" />
+    <Compile Include="Assets\Resources\Scripts\Research\PotionResearch.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

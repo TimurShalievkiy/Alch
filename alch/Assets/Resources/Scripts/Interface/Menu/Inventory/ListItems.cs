@@ -40,38 +40,46 @@ public class ListItems : MonoBehaviour {
         ItemInInventory it = itemList.AddItemInInventory(0, "potion");
 
         if (!it.stackabl)
+        {
             itemList.list.Add(it);
+            Inventory.changList = true;
+        }
         else
         {
-           // Debug.Log("stakabl ");
+            // Debug.Log("stakabl ");
             if (itemList.CheckItemInInventory(it))
             {
-               // Debug.Log("есть в инвентаре  ");
+                // Debug.Log("есть в инвентаре  ");
                 bool flag = true;
                 foreach (var item in itemList.list)
                 {
                     if (item.id == it.id && item.type == it.type && item.count < 99)
                     {
-                       // Debug.Log("есть не заполненный стак  ");
+                        // Debug.Log("есть не заполненный стак  ");
                         item.count++;
+                        Inventory.changList = true;
                         flag = false;
                         break;
                     }
                 }
                 if (flag)
                 {
-                   // Debug.Log("нет не заполненных стаков  ");
+                    // Debug.Log("нет не заполненных стаков  ");
                     itemList.list.Add(it);
+                    Inventory.changList = true;
                 }
             }
             else
             {
-               // Debug.Log("нет в инвентаре  ");
+                // Debug.Log("нет в инвентаре  ");
                 itemList.list.Add(it);
+                Inventory.changList = true;
             }
         }
         SaveInDB();
     }
+
+
 
 
     public  void DeleteAllValue()

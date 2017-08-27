@@ -84,7 +84,7 @@ public class CookingProcess : MonoBehaviour
         if (firstStady)
         {
             //если показатель жизней равен 0 заканчиваем готовку
-            if (lifeFirstStadyCooking == 0)
+            if (lifeFirstStadyCooking <= 0)
                 EndCooking();
 
             //если рецепт доступен и не достигнут конец рецепта
