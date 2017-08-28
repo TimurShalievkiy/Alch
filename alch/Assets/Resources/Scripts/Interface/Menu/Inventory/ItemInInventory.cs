@@ -35,8 +35,6 @@ public class ItemInInventory
 
 public class LisItemInInventory
 {
-
-    // public enum itemType {recipe = 1, potion =2 }
     public List<ItemInInventory> list;
 
     public LisItemInInventory()
@@ -46,34 +44,25 @@ public class LisItemInInventory
     public List<ItemInInventory> StartInventory()
     {
         return new List<ItemInInventory>()
-        { new ItemInInventory {id = 0 ,count = 1, spritePass ="Images/Sprites/Recipes/r2", title = "item1"},
-        new ItemInInventory {id = 0 ,count = 1, spritePass ="Images/Sprites/Recipes/r2", title = "item2"},
-        new ItemInInventory {id = 0 ,count = 1, spritePass ="Images/Sprites/Recipes/r2", title = "item3"},
-        new ItemInInventory {id = 0 ,count = 1, spritePass ="Images/Sprites/Recipes/r2", title = "item4"},
-        new ItemInInventory {id = 0 ,count = 1, spritePass ="Images/Sprites/Recipes/r2", title = "item5"},
-        new ItemInInventory {id = 0 ,count = 1, spritePass ="Images/Sprites/Recipes/r2", title = "item6"},
-        new ItemInInventory {id = 0 ,count = 1, spritePass ="Images/Sprites/Recipes/r2", title = "item7"},
-        new ItemInInventory {id = 0 ,count = 1, spritePass ="Images/Sprites/Recipes/r2", title = "item8"},
-        new ItemInInventory {id = 0 ,count = 1, spritePass ="Images/Sprites/Recipes/r2", title = "item9"},
-        new ItemInInventory {id = 0 ,count = 1, spritePass ="Images/Sprites/Recipes/r2", title = "item10"},
-        new ItemInInventory {id = 0 ,count = 1, spritePass ="Images/Sprites/Recipes/r2", title = "item11"},
-        new ItemInInventory {id = 0 ,count = 1, spritePass ="Images/Sprites/Recipes/r2", title = "item12"},
-        new ItemInInventory {id = 0 ,count = 1, spritePass ="Images/Sprites/Recipes/r2", title = "item13"},
-        new ItemInInventory {id = 0 ,count = 1, spritePass ="Images/Sprites/Recipes/r2", title = "item14"},
-        new ItemInInventory {id = 0 ,count = 1, spritePass ="Images/Sprites/Recipes/r2", title = "item15"},
-        new ItemInInventory {id = 0 ,count = 1, spritePass ="Images/Sprites/Recipes/r2", title = "item16"},
-        new ItemInInventory {id = 0 ,count = 1, spritePass ="Images/Sprites/Recipes/r2", title = "item17"},
-        new ItemInInventory {id = 0 ,count = 1, spritePass ="Images/Sprites/Recipes/r2", title = "item18"},
-        new ItemInInventory {id = 0 ,count = 1, spritePass ="Images/Sprites/Recipes/r2", title = "item19"},
-        new ItemInInventory {id = 0 ,count = 1, spritePass ="Images/Sprites/Recipes/r2", title = "item20"},
-        new ItemInInventory {id = 0 ,count = 1, spritePass ="Images/Sprites/Recipes/r2", title = "item21"},
-        new ItemInInventory {id = 0 ,count = 1, spritePass ="Images/Sprites/Recipes/r2", title = "item22"},
-        new ItemInInventory {id = 0 ,count = 1, spritePass ="Images/Sprites/Recipes/r2", title = "item23"},
-        new ItemInInventory {id = 1 ,count = 99, spritePass ="Images/Sprites/Recipes/r1", title = "item24"},
-        new ItemInInventory {id = 1 ,count = 99, spritePass ="Images/Sprites/Recipes/r1", title = "item25"},
-        new ItemInInventory {id = 1 ,count = 99, spritePass ="Images/Sprites/Recipes/r1", title = "item26"},
-        new ItemInInventory {id = 1 ,count = 99, spritePass ="Images/Sprites/Recipes/r1", title = "item27"}};
-
+        { new ItemInInventory {id = 0 ,count = 1, spritePass =ListPotins.potions[0].spritePas, title = ListPotins.potions[0].namePotion},
+        new ItemInInventory {id = 0 ,count = 1, spritePass =ListPotins.potions[0].spritePas, title = ListPotins.potions[0].namePotion},
+        new ItemInInventory {id = 0 ,count = 1, spritePass =ListPotins.potions[0].spritePas, title = ListPotins.potions[0].namePotion},
+        new ItemInInventory {id = 0 ,count = 1, spritePass =ListPotins.potions[0].spritePas, title = ListPotins.potions[0].namePotion},
+        new ItemInInventory {id = 0 ,count = 1, spritePass =ListPotins.potions[0].spritePas, title = ListPotins.potions[0].namePotion},
+        new ItemInInventory {id = 0 ,count = 1, spritePass =ListPotins.potions[0].spritePas, title = ListPotins.potions[0].namePotion},
+        new ItemInInventory {id = 0 ,count = 1, spritePass =ListPotins.potions[0].spritePas, title = ListPotins.potions[0].namePotion},
+        new ItemInInventory {id = 0 ,count = 1, spritePass =ListPotins.potions[0].spritePas, title = ListPotins.potions[0].namePotion},
+        new ItemInInventory {id = 0 ,count = 1, spritePass =ListPotins.potions[0].spritePas, title = ListPotins.potions[0].namePotion},
+        new ItemInInventory {id = 0 ,count = 1, spritePass =ListPotins.potions[0].spritePas, title = ListPotins.potions[0].namePotion},
+        new ItemInInventory {id = 0 ,count = 1, spritePass =ListPotins.potions[0].spritePas, title = ListPotins.potions[0].namePotion},
+        new ItemInInventory {id = 0 ,count = 1, spritePass =ListPotins.potions[0].spritePas, title = ListPotins.potions[0].namePotion},
+        new ItemInInventory {id = 0 ,count = 1, spritePass =ListPotins.potions[0].spritePas, title = ListPotins.potions[0].namePotion},
+        new ItemInInventory {id = 0 ,count = 1, spritePass =ListPotins.potions[0].spritePas, title = ListPotins.potions[0].namePotion},
+        new ItemInInventory {id = 1 ,count = 99, spritePass =ListPotins.potions[1].spritePas, title = ListPotins.potions[1].namePotion},
+        new ItemInInventory {id = 1 ,count = 99, spritePass =ListPotins.potions[1].spritePas, title = ListPotins.potions[1].namePotion},
+        new ItemInInventory {id = 1 ,count = 99, spritePass =ListPotins.potions[1].spritePas, title = ListPotins.potions[1].namePotion},
+        new ItemInInventory {id = 1 ,count = 99, spritePass =ListPotins.potions[1].spritePas, title = ListPotins.potions[1].namePotion}
+        };
     }
 
     public ItemInInventory AddItemInInventory(int id, string type)

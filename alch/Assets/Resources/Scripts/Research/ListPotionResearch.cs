@@ -20,10 +20,10 @@ public class ListPotionResearch : MonoBehaviour {
         }
 
 
-        foreach (var item in listPotionReserch)
-        {
-            Debug.Log(item.firstPotionId + " " + item.firstPotionCount);
-        }
+        //foreach (var item in listPotionReserch)
+        //{
+        //    Debug.Log(item.firstPotionId + " " + item.firstPotionCount);
+        //}
 
     }
 	
