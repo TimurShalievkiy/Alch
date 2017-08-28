@@ -10,7 +10,8 @@ public class ListPotins : MonoBehaviour {
         potions = new List<Potion>() {
             new Potion(0,"tea",5, "Images/Ingr/salt"),
             new Potion(1,"helth",10, "Images/Ingr/salt"),
-            new Potion(2, "poison",15, "Images/Ingr/salt")
+            new Potion(2, "poison",15, "Images/Ingr/salt"),
+            new Potion(4, "poison",20, "Images/Ingr/salt")
         };
 
        // Debug.Log("Potions done!");

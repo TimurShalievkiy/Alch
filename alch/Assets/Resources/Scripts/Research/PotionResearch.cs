@@ -2,57 +2,70 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PotionResearch : MonoBehaviour {
-    //=========================================================
-    public struct ReqPotion {
-        public int potionId;
-        public int countP;
-        public ReqPotion(int id, int count)
-        {
-            potionId = id;
-            countP = count;
-        }    
-    }
-    //=========================================================
+public class PotionResearch : MonoBehaviour
+{
 
+    public bool isOpen = false;
 
-    public ReqPotion firstPotion;
-    public ReqPotion secondPotion;
-    public ReqPotion thirdPotion;
+    public int firstPotionId;
+    public int firstPotionCount;
 
-    bool isOpen = false;
+    public int secondPotionId;
+    public int secondPotionCount;
 
-  
-    public PotionResearch(int idFirst, int countFirst)
+    public int thirdPotionId;
+    public int thirdPotionCount;
+
+    public int idResipe;
+
+    public PotionResearch(int idFirst, int countFirst, int idResipe)
     {
-        firstPotion = new ReqPotion(idFirst, countFirst);
-        secondPotion = new ReqPotion(-1, -1);
-        thirdPotion = new ReqPotion(-1, -1);
+        firstPotionId = idFirst;
+        firstPotionCount = countFirst;
+
+        secondPotionId = -1;
+        secondPotionCount = -1;
+
+        thirdPotionId = -1;
+        thirdPotionCount = -1;
+        this.idResipe = idResipe;
     }
-    public PotionResearch(int idFirst, int countFirst,int idSecond,int countSecond)
+    public PotionResearch(int idFirst, int countFirst, int idSecond, int countSecond, int idResipe)
     {
-        firstPotion = new ReqPotion(idFirst, countFirst);
-        secondPotion = new ReqPotion(idSecond, countSecond);
-        thirdPotion = new ReqPotion(-1, -1);
+        firstPotionId = idFirst;
+        firstPotionCount = countFirst;
+
+        secondPotionId = idSecond;
+        secondPotionCount = countSecond;
+
+        thirdPotionId = -1;
+        thirdPotionCount = -1;
+        this.idResipe = idResipe;
     }
-    public PotionResearch(int idFirst, int countFirst, int idSecond, int countSecond, int idThird, int countThird)
+    public PotionResearch(int idFirst, int countFirst, int idSecond, int countSecond, int idThird, int countThird, int idResipe)
     {
-        firstPotion = new ReqPotion(idFirst, countFirst);
-        secondPotion = new ReqPotion(idSecond, countSecond);
-        thirdPotion =  new ReqPotion(idThird, countThird);
+        firstPotionId = idFirst;
+        firstPotionCount = countFirst;
+
+        secondPotionId = idSecond;
+        secondPotionCount = countSecond;
+
+        thirdPotionId = idThird;
+        thirdPotionCount = countThird;
+        this.idResipe = idResipe;
     }
 
-    
+
 
     public bool CheckReqInInventory()
     {
-        int count1 = firstPotion.countP;
-        int count2 = secondPotion.countP;
-        int count3 = thirdPotion.countP;
+        int count1 = firstPotionCount;
+        int count2 = secondPotionCount;
+        int count3 = thirdPotionCount;
 
         for (int i = 0; i < ListItems.itemList.list.Count; i++)
         {
-            if (ListItems.itemList.list[i].id == firstPotion.potionId && count1 > 0)
+            if (ListItems.itemList.list[i].id == firstPotionId && count1 > 0)
             {
                 count1 -= ListItems.itemList.list[i].count;
             }
