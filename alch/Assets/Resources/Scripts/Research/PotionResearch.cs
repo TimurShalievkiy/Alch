@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class PotionResearch : MonoBehaviour
 {
 
+    public List<PotionResearch> nextResearch;
+
     public bool isOpen = false;
 
     public int firstPotionId;
@@ -66,8 +68,9 @@ public class PotionResearch : MonoBehaviour
 
         for (int i = 0; i < ListItems.itemList.list.Count; i++)
         {
+           // Debug.Log(ListItems.itemList.list[i].type);
             if (ListItems.itemList.list[i].type == "potion")
-                {
+             {
                 if (ListItems.itemList.list[i].id == firstPotionId && count1 > 0)
                 {
                     count1 -= ListItems.itemList.list[i].count;
@@ -80,11 +83,13 @@ public class PotionResearch : MonoBehaviour
                 {
                     count3 -= ListItems.itemList.list[i].count;
                 }
+                if (count1 <= 0 && count2 <= 0 && count3 <= 0)
+                    return true;
+
             }
         }
         if (count1 <= 0 && count2 <= 0 && count3 <= 0)
             return true;
-        //ListItems.itemList
 
         return false;
     }
@@ -93,12 +98,15 @@ public class PotionResearch : MonoBehaviour
 
     public void FillViewResearch()
     {
+        if (this.transform.GetComponent<Image>().color == Color.black)
+            return;
         GameObject g =  GameObject.Find("ViewInfo");
         g.transform.Find("PotionImage").transform.GetComponent<Image>().sprite = Resources.Load<Sprite>(ListPotins.potions[idResipe].spritePas);
         g.transform.Find("Title").transform.GetComponent<Text>().text = ListPotins.potions[idResipe].namePotion;
 
         if (!isOpen)
         {
+            ListPotionResearch.currentSelectResearch = idResipe;
             //====================================================================
             if (firstPotionId != -1)
             {
@@ -133,6 +141,7 @@ public class PotionResearch : MonoBehaviour
                 g.transform.Find("ThirdPotionImage").gameObject.SetActive(false);
             }
             //====================================================================
+
             if (CheckReqInInventory())
             {
                 g.transform.Find("AcceptButton").transform.GetComponent<Image>().color = Color.green;
@@ -151,6 +160,26 @@ public class PotionResearch : MonoBehaviour
         
 
     }
+    public void UnlockResearch()
+    {
+        if (CheckReqInInventory())
+        {
+           
+            isOpen = true;
+            Inventory.RemoveItemsFromInventoryResearch(firstPotionId, firstPotionCount, secondPotionId, secondPotionCount, thirdPotionId, thirdPotionCount);
+            firstPotionId = -1;
+            firstPotionCount = -1;
 
+            secondPotionId = -1;
+            secondPotionCount = -1;
+
+            thirdPotionId = -1;
+            thirdPotionCount = -1;
+            FillViewResearch();
+        }
+    }
+
+
+    
 }
 

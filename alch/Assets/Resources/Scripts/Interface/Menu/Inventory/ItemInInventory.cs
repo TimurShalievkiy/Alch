@@ -44,24 +44,24 @@ public class LisItemInInventory
     public List<ItemInInventory> StartInventory()
     {
         return new List<ItemInInventory>()
-        { new ItemInInventory {id = 0 ,count = 1, spritePass =ListPotins.potions[0].spritePas, title = ListPotins.potions[0].namePotion},
-        new ItemInInventory {id = 0 ,count = 1, spritePass =ListPotins.potions[0].spritePas, title = ListPotins.potions[0].namePotion},
-        new ItemInInventory {id = 0 ,count = 1, spritePass =ListPotins.potions[0].spritePas, title = ListPotins.potions[0].namePotion},
-        new ItemInInventory {id = 0 ,count = 1, spritePass =ListPotins.potions[0].spritePas, title = ListPotins.potions[0].namePotion},
-        new ItemInInventory {id = 0 ,count = 1, spritePass =ListPotins.potions[0].spritePas, title = ListPotins.potions[0].namePotion},
-        new ItemInInventory {id = 0 ,count = 1, spritePass =ListPotins.potions[0].spritePas, title = ListPotins.potions[0].namePotion},
-        new ItemInInventory {id = 0 ,count = 1, spritePass =ListPotins.potions[0].spritePas, title = ListPotins.potions[0].namePotion},
-        new ItemInInventory {id = 0 ,count = 1, spritePass =ListPotins.potions[0].spritePas, title = ListPotins.potions[0].namePotion},
-        new ItemInInventory {id = 0 ,count = 1, spritePass =ListPotins.potions[0].spritePas, title = ListPotins.potions[0].namePotion},
-        new ItemInInventory {id = 0 ,count = 1, spritePass =ListPotins.potions[0].spritePas, title = ListPotins.potions[0].namePotion},
-        new ItemInInventory {id = 0 ,count = 1, spritePass =ListPotins.potions[0].spritePas, title = ListPotins.potions[0].namePotion},
-        new ItemInInventory {id = 0 ,count = 1, spritePass =ListPotins.potions[0].spritePas, title = ListPotins.potions[0].namePotion},
-        new ItemInInventory {id = 0 ,count = 1, spritePass =ListPotins.potions[0].spritePas, title = ListPotins.potions[0].namePotion},
-        new ItemInInventory {id = 0 ,count = 1, spritePass =ListPotins.potions[0].spritePas, title = ListPotins.potions[0].namePotion},
-        new ItemInInventory {id = 1 ,count = 99, spritePass =ListPotins.potions[1].spritePas, title = ListPotins.potions[1].namePotion},
-        new ItemInInventory {id = 1 ,count = 99, spritePass =ListPotins.potions[1].spritePas, title = ListPotins.potions[1].namePotion},
-        new ItemInInventory {id = 1 ,count = 99, spritePass =ListPotins.potions[1].spritePas, title = ListPotins.potions[1].namePotion},
-        new ItemInInventory {id = 1 ,count = 99, spritePass =ListPotins.potions[1].spritePas, title = ListPotins.potions[1].namePotion}
+        { new ItemInInventory {id = 0,type = "potion" ,count = 1, spritePass =ListPotins.potions[0].spritePas, title = ListPotins.potions[0].namePotion},
+        new ItemInInventory {id = 0,type = "potion" ,count = 1, spritePass =ListPotins.potions[0].spritePas, title = ListPotins.potions[0].namePotion},
+        new ItemInInventory {id = 0,type = "potion" ,count = 1, spritePass =ListPotins.potions[0].spritePas, title = ListPotins.potions[0].namePotion},
+        new ItemInInventory {id = 0,type = "potion" ,count = 1, spritePass =ListPotins.potions[0].spritePas, title = ListPotins.potions[0].namePotion},
+        new ItemInInventory {id = 0,type = "potion" ,count = 1, spritePass =ListPotins.potions[0].spritePas, title = ListPotins.potions[0].namePotion},
+        new ItemInInventory {id = 0,type = "potion" ,count = 1, spritePass =ListPotins.potions[0].spritePas, title = ListPotins.potions[0].namePotion},
+        new ItemInInventory {id = 0,type = "potion" ,count = 1, spritePass =ListPotins.potions[0].spritePas, title = ListPotins.potions[0].namePotion},
+        new ItemInInventory {id = 0,type = "potion" ,count = 1, spritePass =ListPotins.potions[0].spritePas, title = ListPotins.potions[0].namePotion},
+        new ItemInInventory {id = 0,type = "potion" ,count = 1, spritePass =ListPotins.potions[0].spritePas, title = ListPotins.potions[0].namePotion},
+        new ItemInInventory {id = 0,type = "potion" ,count = 1, spritePass =ListPotins.potions[0].spritePas, title = ListPotins.potions[0].namePotion},
+        new ItemInInventory {id = 0,type = "potion" ,count = 1, spritePass =ListPotins.potions[0].spritePas, title = ListPotins.potions[0].namePotion},
+        new ItemInInventory {id = 0,type = "potion" ,count = 1, spritePass =ListPotins.potions[0].spritePas, title = ListPotins.potions[0].namePotion},
+        new ItemInInventory {id = 0,type = "potion" ,count = 1, spritePass =ListPotins.potions[0].spritePas, title = ListPotins.potions[0].namePotion},
+        new ItemInInventory {id = 0,type = "potion" ,count = 1, spritePass =ListPotins.potions[0].spritePas, title = ListPotins.potions[0].namePotion},
+        new ItemInInventory {id = 1,type = "potion" ,count = 99, spritePass =ListPotins.potions[1].spritePas, title = ListPotins.potions[1].namePotion},
+        new ItemInInventory {id = 1,type = "potion" ,count = 99, spritePass =ListPotins.potions[1].spritePas, title = ListPotins.potions[1].namePotion},
+        new ItemInInventory {id = 1,type = "potion" ,count = 99, spritePass =ListPotins.potions[1].spritePas, title = ListPotins.potions[1].namePotion},
+        new ItemInInventory {id = 1,type = "potion" ,count = 99, spritePass =ListPotins.potions[1].spritePas, title = ListPotins.potions[1].namePotion}
         };
     }
 
@@ -93,6 +93,8 @@ public class LisItemInInventory
 
             return false;
     }
+
+   
 
 }
 

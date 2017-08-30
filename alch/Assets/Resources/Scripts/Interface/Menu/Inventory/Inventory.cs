@@ -118,6 +118,72 @@ public class Inventory : MonoBehaviour
         LoadInvetory();
     }
 
+
+        
+        public static void RemoveItemsFromInventoryResearch(int idFirst, int countFirst, int idSecond, int countSecond, int idThird, int countThird)
+    {
+        List<ItemInInventory> removeList = new List<ItemInInventory>();
+        foreach (var item in ListItems.itemList.list)
+        {
+            if (countFirst <= 0 && countSecond<=0&& countThird<=0)
+                break;
+            if (item.type == "potion")
+            {
+                //============================================================ 
+                if (item.id == idFirst)
+                {
+                    if (item.count <= countFirst && item.count > 0)
+                    {
+                        countFirst -= item.count;
+                        removeList.Add(item);
+                    }
+                    else if (item.count > countFirst)
+                    {
+                        item.count -= countFirst;
+                        countFirst = -1;
+                    }                    
+                }
+                //============================================================
+                if (item.id == idSecond)
+                {
+                    if (item.count <= countSecond && item.count > 0)
+                    {
+                        countSecond -= item.count;
+                        removeList.Add(item);
+                    }
+                    else if (item.count > countSecond)
+                    {
+                        item.count -= countSecond;
+                        countSecond = -1;
+                    }
+                }
+                //============================================================
+                if (item.id == idThird)
+                {
+                    if (item.count <= idThird && item.count > 0)
+                    {
+                        idThird -= item.count;
+                        removeList.Add(item);
+                    }
+                    else if (item.count > idThird)
+                    {
+                        item.count -= idThird;
+                        idThird = -1;
+                    }
+                }
+                //============================================================
+            }
+        }
+        for (int i = removeList.Count-1; i >=0 ; i--)
+        {
+            ListItems.itemList.list.Remove(removeList[i]);
+        }
+        GameObject.Find("Inventory").transform.GetComponent<ListItems>().SaveInDB();
+       // GameObject.Find("Inventory").transform.GetComponent<ListItems>().LoadFromDB();
+        GameObject.Find("Inventory").transform.GetComponent<Inventory>().LoadInvetory();
+    }
+
+
     public void SellCurrenItem()
     { }
 

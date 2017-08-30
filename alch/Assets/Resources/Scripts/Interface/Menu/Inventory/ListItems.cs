@@ -25,8 +25,7 @@ public class ListItems : MonoBehaviour {
 
 
     public  void SaveInDB()
-    {
-       // Debug.Log(itemList.list.Count);
+    {    
         PlayerPrefs.SetString("itemList", SerializerDeserializer.Serialize<LisItemInInventory>(itemList));
     }
 
