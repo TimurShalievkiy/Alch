@@ -89,33 +89,29 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Resources\Scripts\GameProcess\CookingProcess.cs" />
-    <Compile Include="Assets\Resources\Scripts\GameProcess\CookingSlider.cs" />
-    <Compile Include="Assets\Resources\Scripts\GameProcess\CookingToub.cs" />
-    <Compile Include="Assets\Resources\Scripts\GameProcess\DeleteZone.cs" />
-    <Compile Include="Assets\Resources\Scripts\GameProcess\GetIngrFromSequense.cs" />
+    <Compile Include="Assets\Resources\Scripts\GameProcess\Cooking\CookingProcess.cs" />
+    <Compile Include="Assets\Resources\Scripts\GameProcess\Cooking\DeleteZone.cs" />
+    <Compile Include="Assets\Resources\Scripts\GameProcess\Cooking\GetIngrFromSequense.cs" />
+    <Compile Include="Assets\Resources\Scripts\GameProcess\Cooking\PauseButton.cs" />
+    <Compile Include="Assets\Resources\Scripts\GameProcess\Cooking\RecipesSelector.cs" />
     <Compile Include="Assets\Resources\Scripts\GameProcess\Interference\FirstStady\Portal\PortalSpauner.cs" />
     <Compile Include="Assets\Resources\Scripts\GameProcess\Interference\FirstStady\Spauner\ListInterfSprites.cs" />
     <Compile Include="Assets\Resources\Scripts\GameProcess\Interference\FirstStady\Spauner\Spauner.cs" />
     <Compile Include="Assets\Resources\Scripts\GameProcess\Interference\FirstStady\Spauner\SpawnObjInterf.cs" />
-    <Compile Include="Assets\Resources\Scripts\GameProcess\PauseButton.cs" />
-    <Compile Include="Assets\Resources\Scripts\GameProcess\RGBButtons.cs" />
-    <Compile Include="Assets\Resources\Scripts\GameProcess\RecipesSelector.cs" />
     <Compile Include="Assets\Resources\Scripts\GameProcess\SpaunerIngr\DragEndDrop.cs" />
     <Compile Include="Assets\Resources\Scripts\GameProcess\SpaunerIngr\GeneratorIngrSeq.cs" />
     <Compile Include="Assets\Resources\Scripts\GameProcess\SpaunerIngr\MoveObject.cs" />
     <Compile Include="Assets\Resources\Scripts\GameProcess\SpaunerIngr\ReturnToMoveIngr.cs" />
-    <Compile Include="Assets\Resources\Scripts\GameProcess\TimeRotationTriger.cs" />
     <Compile Include="Assets\Resources\Scripts\Ingredients\Ingredient.cs" />
     <Compile Include="Assets\Resources\Scripts\Ingredients\ListIngredient.cs" />
-    <Compile Include="Assets\Resources\Scripts\Interface\Menu\ExitButton.cs" />
     <Compile Include="Assets\Resources\Scripts\Interface\Menu\Inventory\Inventory.cs" />
     <Compile Include="Assets\Resources\Scripts\Interface\Menu\Inventory\ItemInInventory.cs" />
     <Compile Include="Assets\Resources\Scripts\Interface\Menu\Inventory\ListItems.cs" />
     <Compile Include="Assets\Resources\Scripts\Interface\Menu\Inventory\SerializerDeserializer.cs" />
-    <Compile Include="Assets\Resources\Scripts\Interface\Menu\MenuButton.cs" />
-    <Compile Include="Assets\Resources\Scripts\Interface\Menu\MenuScroller.cs" />
-    <Compile Include="Assets\Resources\Scripts\Interface\Menu\TrigerZoneMenuButton.cs" />
+    <Compile Include="Assets\Resources\Scripts\Interface\Menu\MainMenu\ExitButton.cs" />
+    <Compile Include="Assets\Resources\Scripts\Interface\Menu\MainMenu\MenuButton.cs" />
+    <Compile Include="Assets\Resources\Scripts\Interface\Menu\MainMenu\MenuScroller.cs" />
+    <Compile Include="Assets\Resources\Scripts\Interface\Menu\MainMenu\TrigerZoneMenuButton.cs" />
     <Compile Include="Assets\Resources\Scripts\Potion\ListPotins.cs" />
     <Compile Include="Assets\Resources\Scripts\Potion\Potion.cs" />
     <Compile Include="Assets\Resources\Scripts\Recipes\ListRecipes.cs" />
