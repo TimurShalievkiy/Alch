@@ -5,14 +5,15 @@ using UnityEngine.UI;
 
 public class CookingProcess : MonoBehaviour
 {
+
     public GameObject gridSequence;
-    //public GameObject ConteinerIngr;
+    
     public GameObject nextIngrView;
     public GameObject spauners;
 
     public GameObject CookingPanelControl;
     public GameObject StartPanelControl;
-    public GameObject uoDownButton;
+    //public GameObject uoDownButton;
     public GameObject pauseButton;
 
  
@@ -35,23 +36,10 @@ public class CookingProcess : MonoBehaviour
     public int currenSlider = -1;
 
     bool readyToAddIngr;
-    bool readyToStady;
+    //bool readyToStady;
 
     public static bool firstStady = false;
-    bool secondStady;
-
-
-   // public static int R;
-   // public static int G;
-   // public static int B;
-
-
-
-
-    public float currentChangeVall = 0.02f; //временная переменная для изменениея значения по клику 
-
-
-    public static int recipeHard = 0; // сложность рецепта влияет на количество слайдеров
+ 
 
     public static int lifeFirstStadyCooking;//количество жизней первой стадии готовки
     public Text lifeText;
@@ -74,7 +62,7 @@ public class CookingProcess : MonoBehaviour
                 EndCooking();
 
             //если рецепт доступен и не достигнут конец рецепта
-            if (recipe.RecipeStatus && !recipe.EndOfRecipe)
+            if (recipe.IsOpen && !recipe.EndOfRecipe)
             {
                 //устанавливаем спрайт и имя панели отображения текущего ингредиента 
                 nextIngrView.transform.GetChild(1).GetComponent<Image>().sprite = recipe.GetCurrentSpriteIngr;
@@ -120,17 +108,15 @@ public class CookingProcess : MonoBehaviour
             for (int i = 0; i < gridSequence.transform.childCount; i++)
                 Destroy(gridSequence.transform.GetChild(i).gameObject);
 
-        uoDownButton.gameObject.SetActive(false);
- 
 
-        spauners.SetActive(false);
+        //spauners.SetActive(false);
         gridSequence.SetActive(false);
         CookingPanelControl.SetActive(false);
         StartPanelControl.SetActive(true);
         readyToAddIngr = true;
         currentIngr = -1;
         firstStady = false;
-        recipe.RecipeStatus = false;
+        recipe.IsOpen = false;
 
         gridSequence.GetComponent<GeneratorIngrSeq>().ResetSequensParametrs();
         SpaunerIngredient.SetActive(false);
@@ -168,10 +154,9 @@ public class CookingProcess : MonoBehaviour
 
 
 
-    public void SetCurrentSliderVal(int x)
-    {
-        
-        currenSlider = x;
-        Debug.Log(currenSlider + " SetCurrentSliderVal");
-    }
+    //public void SetCurrentSliderVal(int x)
+    //{       
+    //    currenSlider = x;
+    //    Debug.Log(currenSlider + " SetCurrentSliderVal");
+    //}
 }

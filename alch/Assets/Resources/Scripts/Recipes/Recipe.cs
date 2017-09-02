@@ -3,33 +3,49 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Recipe : MonoBehaviour {
+
+    public struct interference {
+        public string nameInterf;
+        public int hard;
+        public interference(string n, int h)
+        {
+            nameInterf = n;
+            hard = h;
+        }
+    }
+    public List<interference> listReferences;
+
+
     //индентификатор ингредиента
     int id;
+
     //масив ингредиентов входящих в рецепт
     int[] massIngr;
-    //количество трубок
-    int hard;
 
     //текущий ингредиент 
     int currentIngr;
 
+   //id зелья которое получится в результате завершения рецепта 
     public int idPotion;
 
     //статус рецепта доступен или нет
-    bool recipeStatus;
+    bool isOpen;
 
+    //путь к спрайту рецепта 
     public string spritePas;
 
-    public Recipe(int id, int idPotion, int hard, string spritePas, int[] massIngr)
+    public int price;
+
+    public Recipe(int id, int idPotion, int price, string spritePas, List<interference> lr, int[] massIngr)
     {
         this.id = id;
+        this.price = price;
         this.massIngr = massIngr;
-        this.hard = hard;
         this.spritePas = spritePas;
         currentIngr = 0;
-        recipeStatus = true;
+        isOpen = true;
         this.idPotion = idPotion;
-
+        listReferences = lr;
     }
 
     //инкремент ингредиента
@@ -47,10 +63,10 @@ public class Recipe : MonoBehaviour {
 
 
     //доступность ингредиента для готовки
-    public bool RecipeStatus
+    public bool IsOpen
     {
-        get { return recipeStatus; }
-        set { recipeStatus = value; }
+        get { return isOpen; }
+        set { isOpen = value; }
     }
 
     //проверка на соответсвие текущего ингредиента и 
@@ -75,11 +91,6 @@ public class Recipe : MonoBehaviour {
         get { return massIngr; }
     }
 
-    //свойство дял получения количества трубок
-    public int Hard
-    {
-        get { return hard; }
-    }
 
     //текущий индентефикатр ингредиента
     public int CurrentIngrId

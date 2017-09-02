@@ -27,9 +27,12 @@ public class MenuButton : MonoBehaviour {
                     QuestPanel.SetActive(true);
                     break;
                 case 4:
+
                     recipePanel.SetActive(true);
+                    GameObject.Find("GameProcessObj").GetComponent<ListRecipes>().LoadRecipeIntoView();
                     break;
                 case 5:
+   
                     inventoryPanel.SetActive(true);
                     break;
                 case 6:
