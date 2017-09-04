@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class CookingProcess : MonoBehaviour
 {
+    public GameObject MainMenu;
+    public GameObject CookingPanel;
+
 
     public GameObject gridSequence;
     
@@ -120,6 +123,8 @@ public class CookingProcess : MonoBehaviour
 
         gridSequence.GetComponent<GeneratorIngrSeq>().ResetSequensParametrs();
         SpaunerIngredient.SetActive(false);
+        CookingPanel.gameObject.SetActive(false);
+        MainMenu.gameObject.SetActive(true);
 
     }
 
@@ -128,6 +133,9 @@ public class CookingProcess : MonoBehaviour
     //инициализация процесса готовки.
     public void LoadIngrInSequence()
     {
+        CookingPanel.gameObject.SetActive(true);
+        MainMenu.gameObject.SetActive(false);
+
         SpaunerIngredient.SetActive(true);
 
         Kattle.GetComponent<Animator>().SetBool("kettleUp", false);
@@ -154,9 +162,5 @@ public class CookingProcess : MonoBehaviour
 
 
 
-    //public void SetCurrentSliderVal(int x)
-    //{       
-    //    currenSlider = x;
-    //    Debug.Log(currenSlider + " SetCurrentSliderVal");
-    //}
+
 }

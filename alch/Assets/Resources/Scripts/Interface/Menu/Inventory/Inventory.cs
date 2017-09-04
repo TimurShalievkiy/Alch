@@ -127,17 +127,23 @@ public class Inventory : MonoBehaviour
         {
             if (countFirst <= 0 && countSecond<=0&& countThird<=0)
                 break;
+
             if (item.type == "potion")
             {
                 //============================================================ 
                 if (item.id == idFirst)
                 {
-                    if (item.count <= countFirst && item.count > 0)
+                    if (item.count == countFirst)
+                    {
+                        countFirst = -1;
+                        removeList.Add(item);
+                    }
+                    else if (item.count < countFirst && countFirst > 0)
                     {
                         countFirst -= item.count;
                         removeList.Add(item);
                     }
-                    else if (item.count > countFirst)
+                    else if (item.count > countFirst && countFirst > 0)
                     {
                         item.count -= countFirst;
                         countFirst = -1;
@@ -146,12 +152,17 @@ public class Inventory : MonoBehaviour
                 //============================================================
                 if (item.id == idSecond)
                 {
-                    if (item.count <= countSecond && item.count > 0)
+                    if (item.count == countSecond)
+                    {
+                        countSecond = -1;
+                        removeList.Add(item);
+                    }
+                    else if (item.count < countSecond && countSecond > 0)
                     {
                         countSecond -= item.count;
                         removeList.Add(item);
                     }
-                    else if (item.count > countSecond)
+                    else if (item.count > countSecond && countSecond > 0)
                     {
                         item.count -= countSecond;
                         countSecond = -1;
@@ -160,15 +171,20 @@ public class Inventory : MonoBehaviour
                 //============================================================
                 if (item.id == idThird)
                 {
-                    if (item.count <= idThird && item.count > 0)
+                    if (item.count == countThird)
                     {
-                        idThird -= item.count;
+                        countThird = -1;
                         removeList.Add(item);
                     }
-                    else if (item.count > idThird)
+                    else if (item.count < countThird && countThird > 0)
                     {
-                        item.count -= idThird;
-                        idThird = -1;
+                        countThird -= item.count;
+                        removeList.Add(item);
+                    }
+                    else if (item.count > countThird && countThird > 0)
+                    {
+                        item.count -= countThird;
+                        countThird = -1;
                     }
                 }
                 //============================================================

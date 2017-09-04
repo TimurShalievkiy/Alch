@@ -43,7 +43,7 @@ public class Recipe : MonoBehaviour {
         this.massIngr = massIngr;
         this.spritePas = spritePas;
         currentIngr = 0;
-        isOpen = true;
+        isOpen = false;
         this.idPotion = idPotion;
         listReferences = lr;
     }

@@ -4,8 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class ListRecipes : MonoBehaviour {
-    public GameObject conteinerRecipe;
-    public GameObject panelRecipe;
+
+    public GameObject panelRecipeView;
 
    public static List<Recipe> recipes;
 	// Use this for initialization
@@ -19,27 +19,40 @@ public class ListRecipes : MonoBehaviour {
 
             new Recipe(3,2, 7,"Images/Ingr/salt",new List<Recipe.interference>(){ new Recipe.interference("spauner",4) },new int[]{ 4,3,4,2,4,3,4})
         };
-       
+        recipes[0].IsOpen = true;
+
+
+
     }
+
+  
 
     public void LoadRecipeIntoView()
     {
-        for (int i = 0; i < recipes.Count; i++)
+
+
+        for (int i = 0; i < panelRecipeView.transform.childCount; i++)
         {
-            if (recipes[i].IsOpen)
+            if (i < recipes.Count)
             {
-                GameObject g =  conteinerRecipe;
-                g.name = recipes[i].Id.ToString();
-                Instantiate(g);
-                Debug.Log(recipes[i].Id);
-                panelRecipe.transform.SetParent(g.transform);
-               
-                g.transform.Find("Title").transform.GetComponent<Text>().text = ListPotins.potions[recipes[i].idPotion].namePotion;
-                g.transform.Find("Image").transform.GetComponent<Image>().sprite = Resources.Load<Sprite>(recipes[i].spritePas);
-                g.transform.Find("RecipePrice").transform.GetComponent<Text>().text = recipes[i].price.ToString();
-                
+                if (recipes[i].IsOpen)
+                {
+                    panelRecipeView.transform.GetChild(i).gameObject.SetActive(true);
+                    panelRecipeView.transform.GetChild(i).name = recipes[i].Id.ToString();
+                    panelRecipeView.transform.GetChild(i).Find("Title").GetComponent<Text>().text = ListPotins.potions[recipes[i].Id].namePotion;
+                    panelRecipeView.transform.GetChild(i).Find("Image").GetComponent<Image>().sprite = Resources.Load<Sprite>(ListPotins.potions[recipes[i].Id].spritePas);
+                    panelRecipeView.transform.GetChild(i).Find("RecipePrice").GetComponent<Text>().text = recipes[i].price.ToString();
+                    continue;
+                }
+                else
+                    panelRecipeView.transform.GetChild(i).gameObject.SetActive(false);
+            }
+            else
+            {
+                panelRecipeView.transform.GetChild(i).gameObject.SetActive(false);
             }
         }
+
     }
 
 

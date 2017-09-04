@@ -167,6 +167,7 @@ public class PotionResearch : MonoBehaviour
            
             isOpen = true;
             Inventory.RemoveItemsFromInventoryResearch(firstPotionId, firstPotionCount, secondPotionId, secondPotionCount, thirdPotionId, thirdPotionCount);
+            ListRecipes.recipes[idResipe].IsOpen = true;
             firstPotionId = -1;
             firstPotionCount = -1;
 
