@@ -9,14 +9,12 @@ public class Ingredient : MonoBehaviour {
     string nameIngr;
     string spritePass;
 
-    float valueIngr;
 
-    public Ingredient(int id, string nameIngr, string spass, float valueIngr)
+    public Ingredient(int id, string nameIngr, string spass)
     {
         this.id = id;
         this.nameIngr = nameIngr;
         this.spritePass = spass;
-        this.valueIngr = valueIngr;
     }
 
     public int Id{ get{return id;} }
@@ -29,8 +27,5 @@ public class Ingredient : MonoBehaviour {
         }
 
     }
-    public float GetValueIngr
-    {
-        get { return valueIngr; }
-    }
+
 }

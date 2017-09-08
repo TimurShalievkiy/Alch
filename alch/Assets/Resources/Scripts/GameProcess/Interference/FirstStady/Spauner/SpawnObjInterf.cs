@@ -16,9 +16,10 @@ public class SpawnObjInterf : MonoBehaviour  {
     public float heightScale;
     public float movementSpeed;
 
-    public void InitObj(float xVal,float yVal   , int way,
+    public void InitObj(float xVal,float yVal, int way,
     float pVal,
-    float heightScale , float movementSpeed)
+    float heightScale,
+    float movementSpeed)
     {
         this.xVal = xVal;
         this.yVal = yVal;
@@ -27,7 +28,10 @@ public class SpawnObjInterf : MonoBehaviour  {
         this.heightScale = heightScale;
         this.movementSpeed = movementSpeed;
     }
-
+    private void Start()
+    {
+        this.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
+    }
     void FixedUpdate()
     {
         xVal = this.transform.localPosition.x - (Time.deltaTime * movementSpeed * way);

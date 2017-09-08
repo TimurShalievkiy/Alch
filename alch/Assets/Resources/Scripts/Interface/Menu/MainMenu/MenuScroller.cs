@@ -5,36 +5,47 @@ using UnityEngine.EventSystems;
 
 public class MenuScroller : EventTrigger
 {
-    float xcurrent = 0;
+    public static float xcurrent = 0;
     //направление инерции
-    bool way;
+    public static bool way;
     //предыдущая позиция тача
-    float oldPos = 0;
+    public static float oldPos = 0;
     //разница между предыдущей и нынешней позицией тача
-    float current;
+    public static float current;
  
 
-    public int reiteration;
+    public static int reiteration;
+
+    GameObject go;
+    public void Start()
+    {
+        go = GameObject.Find("MenuButtonsPanel");
+
+        //тут растояние между кнопками
+    }
 
     public void FixedUpdate()
     {
-        //если инерция включена
+       // если инерция включена
+
         if (reiteration > 0)
         {
+            //  Debug.Log(reiteration);
             //смещаем элементы меню
             if (way)
-                for (int i = 0; i < this.transform.GetChild(0).transform.childCount; i++)
+                for (int i = 0; i < go.transform.GetChild(0).transform.childCount; i++)
                 {
-                        this.transform.GetChild(0).transform.GetChild(i).transform.position = new Vector2(this.transform.GetChild(0).transform.GetChild(i).transform.position.x + Time.deltaTime * (1000), this.transform.GetChild(0).transform.GetChild(1).transform.position.y);
+                    go.transform.GetChild(0).transform.GetChild(i).transform.position = new Vector2(go.transform.GetChild(0).transform.GetChild(i).transform.position.x + Time.deltaTime * (1000), go.transform.GetChild(0).transform.GetChild(1).transform.position.y);
                 }
             else
-                for (int i = 0; i < this.transform.GetChild(0).transform.childCount; i++)
-                        this.transform.GetChild(0).transform.GetChild(i).transform.position = new Vector2(this.transform.GetChild(0).transform.GetChild(i).transform.position.x - Time.deltaTime * (1000), this.transform.GetChild(0).transform.GetChild(1).transform.position.y);
+                for (int i = 0; i < go.transform.GetChild(0).transform.childCount; i++)
+                    go.transform.GetChild(0).transform.GetChild(i).transform.position = new Vector2(go.transform.GetChild(0).transform.GetChild(i).transform.position.x - Time.deltaTime * (1000), go.transform.GetChild(0).transform.GetChild(1).transform.position.y);
         }
     }
 
     public override void OnBeginDrag(PointerEventData eventData)
     {
+
         //переопреназначаем старую позициюж
         oldPos = eventData.position.x;
     }
@@ -69,6 +80,9 @@ public class MenuScroller : EventTrigger
         
         //переопреназначаем старую позициюж
         oldPos = data.position.x;
+
+
+
 
     }
 

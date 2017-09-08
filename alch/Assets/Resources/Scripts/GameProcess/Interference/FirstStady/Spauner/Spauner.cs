@@ -20,9 +20,9 @@ public class Spauner : MonoBehaviour
     public int yForse;
 
     float currentTimeDelay;
-    public GameObject kattle;
+   // public GameObject kattle;
 
-    public float heightScale;
+    //public float heightScale;
     public float pVal;
     public float movementSpeed;
 
@@ -42,13 +42,10 @@ public class Spauner : MonoBehaviour
         //если работает
         if (working)
         {
-            //  if (ListSpawnObj.Count > 0)
-            //  MoveSpawnObject();
             //если время задержки закончилось
             if (currentTimeDelay <= 0)
             {
                 //метод спавна обьекта
-                //SpawnObj();
                 SpawnObjByParabola();
 
                 currentTimeDelay = timeDelay;
@@ -62,38 +59,44 @@ public class Spauner : MonoBehaviour
 
 
     //сложность спавнеров
-    public void SetSpawnerHard(float chans, float timeDelay)
+    public void SetSpawnerHard(int hard)
     {
-        this.chans = chans;
-        this.timeDelay = timeDelay;
-    }
-
-    double sqrtX;
-    public void MoveSpawnObject()
-    {
-
-        foreach (GameObject item in ListSpawnObj)
+        switch (hard)
         {
-
-            xVal = item.transform.localPosition.x - (Time.deltaTime * movementSpeed * way);
-
-            yVal = way * pVal * heightScale * xVal;
-
-
-            item.transform.localPosition = new Vector3(xVal, Mathf.Sqrt(yVal), 0);
+            case 1:
+                Debug.Log("Hard = 1");
+                chans = 40;  
+                timeDelay = 2;
+                break;
+            case 2:
+                Debug.Log("Hard = 2");
+                chans = 50;
+                timeDelay = 1.5f;
+                break;
+            case 3:
+                Debug.Log("Hard = 3");
+                chans = 60;
+                timeDelay = 1;
+                break;
+            default:
+                break;
         }
-
     }
+
+
     public void SpawnObjByParabola()
     {
         //шанс на спавн обьекта 
         if (Random.Range(1, 100) <= chans)
         {
+            float heightScale = Random.Range(25, 150);
+           // Debug.Log(heightScale);
             float x = Screen.width / 2 + Screen.width * way;
             float y = heightScale * way * pVal * x;
             //создание нового обькта 
 
             GameObject g = Instantiate(spawnObj);
+           
             g.GetComponent<SpawnObjInterf>().InitObj(x, y, way, pVal, heightScale, movementSpeed);
             g.transform.localPosition = new Vector2(x, y);
 
@@ -111,7 +114,7 @@ public class Spauner : MonoBehaviour
     }
 
 
-    public void SpawnObj()
+   /* public void SpawnObj()
     {
         //шанс на спавн обьекта 
         if (Random.Range(1, 100) <= chans)
@@ -139,7 +142,7 @@ public class Spauner : MonoBehaviour
             g.name = "-2";
         }
 
-    }
+    }*/
 
     public void GetItemFromList(ref GameObject g)
     {

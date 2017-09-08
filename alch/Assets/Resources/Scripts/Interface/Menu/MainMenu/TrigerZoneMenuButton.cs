@@ -6,16 +6,26 @@ public class TrigerZoneMenuButton : MonoBehaviour
 {
     public static int currentButton = 0;
 
+    public void Start()
+    {
+        float p = Screen.width / 3;
+        this.transform.GetChild(2).transform.position = new Vector2(this.transform.GetChild(3).position.x - p, this.transform.GetChild(0).position.y);
+        this.transform.GetChild(1).transform.position = new Vector2(this.transform.GetChild(2).position.x - p, this.transform.GetChild(0).position.y);
+        this.transform.GetChild(0).transform.position = new Vector2(this.transform.GetChild(1).position.x - p, this.transform.GetChild(0).position.y);
+
+
+        this.transform.GetChild(4).transform.position = new Vector2(this.transform.GetChild(3).position.x + p, this.transform.GetChild(0).position.y);
+        this.transform.GetChild(5).transform.position = new Vector2(this.transform.GetChild(4).position.x + p, this.transform.GetChild(0).position.y);
+
+    }
     //при входе элемента в тригер зону
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //Debug.Log(this.GetComponent<BoxCollider2D>().bounds.center.x);
 
         //проверяем есть ли у этого элемента скрипт MenuButton
         if (collision.transform.GetComponent<MenuButton>())
         {
             //переменная растояния между кнопками меню
-            //float p = collision.bounds.size.x * 2.5f;
             float p = Screen.width / 3;
 
 
@@ -59,7 +69,7 @@ public class TrigerZoneMenuButton : MonoBehaviour
 
 
             //уменяшаем количество перемещений в скроллере
-            this.transform.parent.GetComponent<MenuScroller>().reiteration--;
+            MenuScroller.reiteration--;
 
 
 

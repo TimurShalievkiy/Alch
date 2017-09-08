@@ -92,6 +92,8 @@
     <Compile Include="Assets\Resources\Scripts\GameProcess\Cooking\CookingProcess.cs" />
     <Compile Include="Assets\Resources\Scripts\GameProcess\Cooking\DeleteZone.cs" />
     <Compile Include="Assets\Resources\Scripts\GameProcess\Cooking\GetIngrFromSequense.cs" />
+    <Compile Include="Assets\Resources\Scripts\GameProcess\Cooking\HeatAndMix\HeatControl.cs" />
+    <Compile Include="Assets\Resources\Scripts\GameProcess\Cooking\HeatAndMix\MixControl.cs" />
     <Compile Include="Assets\Resources\Scripts\GameProcess\Cooking\PauseButton.cs" />
     <Compile Include="Assets\Resources\Scripts\GameProcess\Cooking\RecipesSelector.cs" />
     <Compile Include="Assets\Resources\Scripts\GameProcess\Interference\FirstStady\InterferencesManager.cs" />
@@ -112,6 +114,7 @@
     <Compile Include="Assets\Resources\Scripts\Interface\Menu\MainMenu\ExitButton.cs" />
     <Compile Include="Assets\Resources\Scripts\Interface\Menu\MainMenu\MenuButton.cs" />
     <Compile Include="Assets\Resources\Scripts\Interface\Menu\MainMenu\MenuScroller.cs" />
+    <Compile Include="Assets\Resources\Scripts\Interface\Menu\MainMenu\ScrollInButton.cs" />
     <Compile Include="Assets\Resources\Scripts\Interface\Menu\MainMenu\TrigerZoneMenuButton.cs" />
     <Compile Include="Assets\Resources\Scripts\Potion\ListPotins.cs" />
     <Compile Include="Assets\Resources\Scripts\Potion\Potion.cs" />

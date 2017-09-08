@@ -13,7 +13,7 @@ public class Recipe : MonoBehaviour {
             hard = h;
         }
     }
-    public List<interference> listReferences;
+    public List<interference> listInterferences;
 
 
     //индентификатор ингредиента
@@ -23,7 +23,7 @@ public class Recipe : MonoBehaviour {
     int[] massIngr;
 
     //текущий ингредиент 
-    int currentIngr;
+    public int currentIngr;
 
    //id зелья которое получится в результате завершения рецепта 
     public int idPotion;
@@ -36,6 +36,8 @@ public class Recipe : MonoBehaviour {
 
     public int price;
 
+    bool endOfRecipe = false;
+
     public Recipe(int id, int idPotion, int price, string spritePas, List<interference> lr, int[] massIngr)
     {
         this.id = id;
@@ -45,7 +47,7 @@ public class Recipe : MonoBehaviour {
         currentIngr = 0;
         isOpen = false;
         this.idPotion = idPotion;
-        listReferences = lr;
+        listInterferences = lr;
     }
 
     //инкремент ингредиента
@@ -55,10 +57,15 @@ public class Recipe : MonoBehaviour {
         if (currentIngr + 1 < massIngr.Length)
         {
             currentIngr++;
+           // Debug.Log(currentIngr);
         }
         //иначе текущий ингредиент устанавливается в -1
         else
-            currentIngr =-1;
+        {
+            currentIngr = -1;
+            endOfRecipe = true;
+            //Debug.Log(currentIngr + " end");
+        }
     }
 
 
@@ -73,7 +80,7 @@ public class Recipe : MonoBehaviour {
     public bool EqualsIngr(int x)
     {
        // Debug.Log("currentIngr = " + currentIngr);
-        if (x == massIngr[currentIngr])
+        if (currentIngr < massIngr.Length && x == massIngr[currentIngr])
         {
             return true;
         }
@@ -123,22 +130,14 @@ public class Recipe : MonoBehaviour {
     //достижение конца рецепта 
     public bool EndOfRecipe
     {
-        get { if (currentIngr >= 0)
+        get {
+            if (endOfRecipe)
+                return true;
+            if (currentIngr >= 0)
                 return false;
             else return true;
         }
+        set { endOfRecipe = value; }
     }
-    //значение для обработки во второй стадии 
-    public float GetValueAllIngredient
-    {
-        get
-        {
-            float ret = 0;
-            for (int i = 0; i < massIngr.Length; i++)
-            {
-               ret+= ListIngredient.ingredients[massIngr[i]].GetValueIngr;
-            }
-            return ret;
-        }
-    }
+  
 }

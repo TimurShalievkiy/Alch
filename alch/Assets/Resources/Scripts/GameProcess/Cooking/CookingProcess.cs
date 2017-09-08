@@ -10,39 +10,33 @@ public class CookingProcess : MonoBehaviour
 
 
     public GameObject gridSequence;
-    
-    public GameObject nextIngrView;
-    public GameObject spauners;
 
-    public GameObject CookingPanelControl;
+    public GameObject nextIngrView;
+
     public GameObject StartPanelControl;
-    //public GameObject uoDownButton;
+
     public GameObject pauseButton;
 
- 
+
     public GameObject SpaunerIngredient;
 
 
     //обьект котел
     public GameObject Kattle;
 
- 
+
     //пойнтер зоны для переключения между трубками
     public GameObject PointerZones;
 
     //текущий рецепт
     public static Recipe recipe;
 
-
     public static int currentIngr;
 
-    public int currenSlider = -1;
-
     bool readyToAddIngr;
-    //bool readyToStady;
 
     public static bool firstStady = false;
- 
+
 
     public static int lifeFirstStadyCooking;//количество жизней первой стадии готовки
     public Text lifeText;
@@ -50,7 +44,6 @@ public class CookingProcess : MonoBehaviour
     void Start()
     {
         readyToAddIngr = true;
-        // currentRecipeIngr = -1;
     }
 
 
@@ -64,15 +57,31 @@ public class CookingProcess : MonoBehaviour
             if (lifeFirstStadyCooking <= 0)
                 EndCooking();
 
+            if(recipe.EndOfRecipe)
+                EndCooking();
             //если рецепт доступен и не достигнут конец рецепта
             if (recipe.IsOpen && !recipe.EndOfRecipe)
             {
-                //устанавливаем спрайт и имя панели отображения текущего ингредиента 
+
+                if (recipe.MassIngr[recipe.currentIngr] == 0 && !HeatControl.UnlockHeatControl)
+                {
+                    //Debug.Log("++++++++++++");
+                    HeatControl.UnlockHeatControl = true;
+                }
+                else if (recipe.MassIngr[recipe.currentIngr] == 1 && !MixControl.UnlockMixtControl)
+                {
+                   // Debug.Log("-----------");
+                    MixControl.UnlockMixtControl = true;
+                }
+
+
+
+                //устанавливаем спрайт и имя панели отображения текущего ингредиента              
                 nextIngrView.transform.GetChild(1).GetComponent<Image>().sprite = recipe.GetCurrentSpriteIngr;
                 nextIngrView.transform.GetChild(1).name = recipe.CurrentIngrId.ToString();
             }
         }
-        
+
 
     }
 
@@ -80,12 +89,13 @@ public class CookingProcess : MonoBehaviour
     //добавление ингредиента для обработки 
     public void AddIngredientToKattle()
     {
+
         //если заброшенный ингредиент равен текущему ингредиенту рецепта
         if (recipe.EqualsIngr(currentIngr))
-        {
+        {         
+
             //инкрементируем ингредиент в рецепте
             recipe.NextStepIngr();
-
             //при достижении конца рецепта переход на следующую стадию
             if (recipe.EndOfRecipe)
             {
@@ -112,9 +122,9 @@ public class CookingProcess : MonoBehaviour
                 Destroy(gridSequence.transform.GetChild(i).gameObject);
 
 
-        //spauners.SetActive(false);
+        GameObject.Find("InterferencesManager").transform.GetComponent<InterferencesManager>().RemoveAllInterferences();
+
         gridSequence.SetActive(false);
-        CookingPanelControl.SetActive(false);
         StartPanelControl.SetActive(true);
         readyToAddIngr = true;
         currentIngr = -1;
@@ -125,7 +135,6 @@ public class CookingProcess : MonoBehaviour
         SpaunerIngredient.SetActive(false);
         CookingPanel.gameObject.SetActive(false);
         MainMenu.gameObject.SetActive(true);
-
     }
 
 
@@ -138,7 +147,7 @@ public class CookingProcess : MonoBehaviour
 
         SpaunerIngredient.SetActive(true);
 
-        Kattle.GetComponent<Animator>().SetBool("kettleUp", false);
+
         //удаление дочерних єлементов из очереди.
         if (gridSequence.transform.childCount > 0)
             for (int i = 0; i < gridSequence.transform.childCount; i++)
@@ -150,14 +159,13 @@ public class CookingProcess : MonoBehaviour
 
         nextIngrView.gameObject.SetActive(true);
 
-        lifeFirstStadyCooking = 3;
+        lifeFirstStadyCooking = 100;
         lifeText.text = lifeFirstStadyCooking.ToString();
         lifeText.transform.parent.gameObject.SetActive(true);
 
-        spauners.SetActive(true);
-        Spauner.DeleteAllFromList();
+        GameObject.Find("InterferencesManager").transform.GetComponent<InterferencesManager>().CreateInterferences(ListRecipes.recipes[recipe.Id].listInterferences);
 
-        pauseButton.transform.position = new Vector2(Screen.width - 120, 120 );
+        pauseButton.transform.position = new Vector2(Screen.width - 120, 120);
     }
 
 
