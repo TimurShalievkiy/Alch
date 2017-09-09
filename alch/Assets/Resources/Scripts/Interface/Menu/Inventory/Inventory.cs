@@ -120,7 +120,7 @@ public class Inventory : MonoBehaviour
 
 
         
-        public static void RemoveItemsFromInventoryResearch(int idFirst, int countFirst, int idSecond, int countSecond, int idThird, int countThird)
+    public static void RemoveItemsFromInventoryResearch(int idFirst, int countFirst, int idSecond, int countSecond, int idThird, int countThird)
     {
         List<ItemInInventory> removeList = new List<ItemInInventory>();
         foreach (var item in ListItems.itemList.list)
@@ -198,6 +198,8 @@ public class Inventory : MonoBehaviour
        // GameObject.Find("Inventory").transform.GetComponent<ListItems>().LoadFromDB();
         GameObject.Find("Inventory").transform.GetComponent<Inventory>().LoadInvetory();
     }
+
+
 
 
     public void SellCurrenItem()

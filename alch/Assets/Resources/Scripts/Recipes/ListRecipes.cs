@@ -17,7 +17,7 @@ public class ListRecipes : MonoBehaviour {
 
             new Recipe(2,2,5, "Images/Ingr/salt",new List<Recipe.interference>(){ new Recipe.interference("spauner",3) },new int[]{ 4,3,2}),
 
-            new Recipe(3,2, 7,"Images/Ingr/salt",new List<Recipe.interference>(){ new Recipe.interference("spauner",3) },new int[]{ 4,3,4,2,4,3,4})
+            new Recipe(3,3, 7,"Images/Ingr/salt",new List<Recipe.interference>(){ new Recipe.interference("spauner",3) },new int[]{ 4,3,4,2,4,3,4})
         };
         recipes[0].IsOpen = true;
 

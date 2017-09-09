@@ -21,6 +21,8 @@ public class CookingProcess : MonoBehaviour
     public GameObject SpaunerIngredient;
 
 
+ 
+
     //обьект котел
     public GameObject Kattle;
 
@@ -40,6 +42,8 @@ public class CookingProcess : MonoBehaviour
 
     public static int lifeFirstStadyCooking;//количество жизней первой стадии готовки
     public Text lifeText;
+    bool end = true;
+
 
     void Start()
     {
@@ -54,11 +58,17 @@ public class CookingProcess : MonoBehaviour
         if (firstStady)
         {
             //если показатель жизней равен 0 заканчиваем готовку
-            if (lifeFirstStadyCooking <= 0)
-                EndCooking();
+            if (lifeFirstStadyCooking <= 0 && end)
+            {
+                GameObject.Find("GameProcessObj").GetComponent<ConfirmPanels>().ShowDialogWindow(false, -1);
+                end = false;
+            }
 
-            if(recipe.EndOfRecipe)
-                EndCooking();
+            if (recipe.EndOfRecipe && end)
+            {
+                GameObject.Find("GameProcessObj").GetComponent<ConfirmPanels>().ShowDialogWindow(true, recipe.idPotion);
+                end = false;
+            }
             //если рецепт доступен и не достигнут конец рецепта
             if (recipe.IsOpen && !recipe.EndOfRecipe)
             {
@@ -96,12 +106,7 @@ public class CookingProcess : MonoBehaviour
 
             //инкрементируем ингредиент в рецепте
             recipe.NextStepIngr();
-            //при достижении конца рецепта переход на следующую стадию
-            if (recipe.EndOfRecipe)
-            {
-                firstStady = false;
-                EndCooking();
-            }
+
         }
         //иначе уменьшаем показатель жизней
         else
@@ -135,6 +140,7 @@ public class CookingProcess : MonoBehaviour
         SpaunerIngredient.SetActive(false);
         CookingPanel.gameObject.SetActive(false);
         MainMenu.gameObject.SetActive(true);
+        end = true;
     }
 
 
@@ -159,7 +165,7 @@ public class CookingProcess : MonoBehaviour
 
         nextIngrView.gameObject.SetActive(true);
 
-        lifeFirstStadyCooking = 100;
+        lifeFirstStadyCooking = 3;
         lifeText.text = lifeFirstStadyCooking.ToString();
         lifeText.transform.parent.gameObject.SetActive(true);
 

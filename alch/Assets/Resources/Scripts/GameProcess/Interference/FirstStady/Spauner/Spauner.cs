@@ -89,7 +89,7 @@ public class Spauner : MonoBehaviour
         //шанс на спавн обьекта 
         if (Random.Range(1, 100) <= chans)
         {
-            float heightScale = Random.Range(25, 150);
+            float heightScale = Random.Range(25, 250);
            // Debug.Log(heightScale);
             float x = Screen.width / 2 + Screen.width * way;
             float y = heightScale * way * pVal * x;

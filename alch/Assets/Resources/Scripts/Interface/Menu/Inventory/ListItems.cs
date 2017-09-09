@@ -34,10 +34,11 @@ public class ListItems : MonoBehaviour {
         return itemList;
     }
 
-    public void AddItem()
+    public void AddItem(int id , string type)
     {
-        ItemInInventory it = itemList.AddItemInInventory(0, "potion");
+        ItemInInventory it = itemList.AddItemInInventory(id, type);
 
+        Debug.Log("after create " + it.count);
         if (!it.stackabl)
         {
             itemList.list.Add(it);
@@ -75,6 +76,8 @@ public class ListItems : MonoBehaviour {
                 Inventory.changList = true;
             }
         }
+
+        Debug.Log("after search " + it.count);
         SaveInDB();
     }
 

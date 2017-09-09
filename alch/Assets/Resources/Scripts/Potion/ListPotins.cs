@@ -11,7 +11,7 @@ public class ListPotins : MonoBehaviour {
             new Potion(0,"tea",5, "Images/Sprites/Potions/potion1"),
             new Potion(1,"helth",10, "Images/Sprites/Potions/potion2"),
             new Potion(2, "poison",15, "Images/Sprites/Potions/potion3"),
-            new Potion(4, "poison",20, "Images/Sprites/Potions/potion4")
+            new Potion(3, "poison",20, "Images/Sprites/Potions/potion4")
         };
 
        // Debug.Log("Potions done!");
