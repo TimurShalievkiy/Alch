@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HeatControl : MonoBehaviour {
 
@@ -15,7 +16,7 @@ public class HeatControl : MonoBehaviour {
             CookingProcess.recipe.NextStepIngr();
         }
         if (UnlockHeatControl && progressHeat>0)
-            progressHeat -= Time.deltaTime * 0.5f;
+            progressHeat -= Time.deltaTime * 0.3f;
     }
 
 
@@ -24,7 +25,7 @@ public class HeatControl : MonoBehaviour {
         if (UnlockHeatControl)
         {
             CurrentPos = 0;
-
+            this.GetComponent<Image>().sprite = Resources.Load<Sprite>("Images/Cooking/MixAndHeat/1");
         }
     }
 
@@ -34,9 +35,9 @@ public class HeatControl : MonoBehaviour {
         {
             if (CurrentPos == 0)
             {
-               
+                this.GetComponent<Image>().sprite = Resources.Load<Sprite>("Images/Cooking/MixAndHeat/2");
                 CurrentPos = 1;
-                progressHeat += 0.2f;
+                progressHeat += 0.3f;
                // Debug.Log(progressHeat);
             }
         }
@@ -48,6 +49,7 @@ public class HeatControl : MonoBehaviour {
         UnlockHeatControl = false;
         CurrentPos = -1;
         progressHeat = 0;
-      //  Debug.Log("Reset Heat");
+        this.GetComponent<Image>().sprite = Resources.Load<Sprite>("Images/Cooking/MixAndHeat/1");
+        //  Debug.Log("Reset Heat");
     }
 }

@@ -20,6 +20,9 @@ public class ConfirmPanels : MonoBehaviour
             GameObject.Find("Inventory").transform.GetComponent<ListItems>().AddItem(idPotion, "potion");
             winPanel.gameObject.SetActive(true);
             winPanel.transform.Find("Image").GetComponent<Image>().sprite = Resources.Load<Sprite>(ListPotins.potions[idPotion].spritePas);
+            winPanel.transform.Find("Title").GetComponent<Text>().text = ListPotins.potions[idPotion].namePotion;
+
+            
         }
         else
         {

@@ -11,9 +11,9 @@ public class ListRecipes : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         recipes = new List<Recipe>() {
-            new Recipe(0,0,1, "Images/Ingr/salt",new List<Recipe.interference>(){ new Recipe.interference("spauner",1) },new int[]{ 2,3,4,0,5,6,2,1}),
+            new Recipe(0,0,1, "Images/Ingr/salt",new List<Recipe.interference>(){ new Recipe.interference("spauner",2) },new int[]{ 2,3,4,0,3,4,2,1,3,2}),
 
-            new Recipe(1,1,3, "Images/Ingr/salt",new List<Recipe.interference>(){ new Recipe.interference("spauner",2) } , new int[]{ 3,2,5,2,4}),
+            new Recipe(1,1,3, "Images/Ingr/salt",new List<Recipe.interference>(){ new Recipe.interference("spauner",2) } , new int[]{ 3,2,4,2,4}),
 
             new Recipe(2,2,5, "Images/Ingr/salt",new List<Recipe.interference>(){ new Recipe.interference("spauner",3) },new int[]{ 4,3,2}),
 

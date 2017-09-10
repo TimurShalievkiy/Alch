@@ -31,7 +31,7 @@ public class GeneratorIngrSeq : MonoBehaviour
 
         //Вставка обьекта ингредиента
         GameObject g = Instantiate(conteiner, transform.position, Quaternion.identity);
-        g.transform.GetComponent<RectTransform>().sizeDelta = new Vector2(Screen.height / 6, Screen.height / 6);
+        g.transform.GetComponent<RectTransform>().sizeDelta = new Vector2(Screen.height / 5.5f, Screen.height / 5.5f);
 
         //шанс создания ложного ингредиента
         // if (Random.Range(0, 100) < 10)

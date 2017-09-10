@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MixControl : MonoBehaviour {
 
@@ -16,7 +17,7 @@ public class MixControl : MonoBehaviour {
             CookingProcess.recipe.NextStepIngr();
         }
         if (UnlockMixtControl && progressMix > 0)
-            progressMix -= Time.deltaTime * 0.5f;
+            progressMix -= Time.deltaTime * 0.3f;
     }
 
 
@@ -25,7 +26,10 @@ public class MixControl : MonoBehaviour {
         if (UnlockMixtControl)
         {
             CurrentPos = 0;
-           // Debug.Log("Left");
+            this.transform.GetChild(1).GetChild(0).gameObject.SetActive(true);
+            this.transform.GetChild(0).GetChild(0).gameObject.SetActive(false);
+            //this.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("Images/Cooking/MixAndHeat/ladle_1");
+            // Debug.Log("Left");
         }
     }
 
@@ -37,8 +41,12 @@ public class MixControl : MonoBehaviour {
             {
 
                 CurrentPos = 1;
-                progressMix += 0.2f;
-               // Debug.Log("Right " +progressMix);
+                progressMix += 0.3f;
+                this.transform.GetChild(1).GetChild(0).gameObject.SetActive(false);
+                this.transform.GetChild(0).GetChild(0).gameObject.SetActive(true);
+
+                //this.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("Images/Cooking/MixAndHeat/ladle_2");
+                // Debug.Log("Right " +progressMix);
             }
         }
     }
@@ -46,6 +54,8 @@ public class MixControl : MonoBehaviour {
 
     public void ResetHeatControl()
     {
+        this.transform.GetChild(0).GetChild(0).gameObject.SetActive(true);
+        this.transform.GetChild(1).GetChild(0).gameObject.SetActive(false);
         UnlockMixtControl = false;
         CurrentPos = -1;
         progressMix = 0;
